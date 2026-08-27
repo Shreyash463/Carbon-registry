@@ -12,8 +12,8 @@
     --turquoise: #00F5D4;
     --ocean-blue: #00B4D8;
     --sea-green: #10B981;
-    --emerald: #00FF9C;
-    --neon-green: #00FF9C;
+    --emerald: #00F5D4;
+    --neon-green: #00F5D4;
     --neon-cyan: #00F5D4;
     --neon-amber: #FBBF24;
     --neon-red: #F87171;
@@ -37,16 +37,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #05080A;
+  background: #030712;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #14354D;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00FF9C55;
+  background: #00F5D455;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -59,12 +59,12 @@
 
 /* Immersive UI Scanline and Grid Utilities */
 .bg-grid-pattern {
-  background-image: radial-gradient(#1E293B 1px, transparent 1px);
+  background-image: radial-gradient(#14354D 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 .glow-mint {
-  box-shadow: 0 0 15px rgba(0, 255, 156, 0.25);
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.25);
 }
 
 .glow-cyan {

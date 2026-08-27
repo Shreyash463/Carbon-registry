@@ -151,14 +151,14 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
       const isPending = site.verificationStatus === 'PENDING_MRV';
 
       const pinColor = isSelected 
-        ? '#00FF9C' 
+        ? '#00F5D4' 
         : isDegraded 
           ? '#FF4444' 
           : isPending 
             ? '#00D1FF' 
-            : (isMH ? '#00FF9C' : '#E0E7EB');
+            : (isMH ? '#00F5D4' : '#E0E7EB');
 
-      const glowColor = isMH ? 'rgba(0, 255, 156, 0.45)' : 'rgba(0, 209, 255, 0.35)';
+      const glowColor = isMH ? 'rgba(0, 245, 212, 0.45)' : 'rgba(0, 209, 255, 0.35)';
 
       const markerHtml = `
         <div style="position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer;">
@@ -175,14 +175,14 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
             height: ${isSelected ? '22px' : '16px'};
             border-radius: 50%;
             background: ${pinColor};
-            border: 2px solid #05080A;
+            border: 2px solid #030712;
             box-shadow: 0 0 12px ${pinColor};
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10;
           ">
-            ${isMH ? '<div style="width: 5px; height: 5px; border-radius: 50%; background: #05080A;"></div>' : ''}
+            ${isMH ? '<div style="width: 5px; height: 5px; border-radius: 50%; background: #030712;"></div>' : ''}
           </div>
         </div>
       `;
@@ -201,8 +201,8 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
 
       // Custom Popup
       const popupHtml = `
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px; color: #05080A; min-width: 200px;">
-          <div style="font-weight: 800; font-size: 12px; text-transform: uppercase; color: #05080A; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px; color: #030712; min-width: 200px;">
+          <div style="font-weight: 800; font-size: 12px; text-transform: uppercase; color: #030712; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px;">
             ${isMH ? '⭐ ' : ''}${site.name}
           </div>
           <div style="color: #0284c7; font-weight: bold; margin-top: 3px; font-size: 10px; text-transform: uppercase;">
@@ -312,7 +312,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
 
         const userMarker = L.marker([lat, lng], { icon: userIcon, zIndexOffset: 1000 });
         userMarker.bindPopup(`
-          <div style="font-family: monospace; font-size: 11px; color: #05080A; padding: 4px;">
+          <div style="font-family: monospace; font-size: 11px; color: #030712; padding: 4px;">
             <strong>${simulated ? '📡 SIMULATED MH COASTAL SENSOR' : '🎯 YOUR LIVE GPS LOCATION'}</strong><br/>
             ${lat.toFixed(4)}°N, ${lng.toFixed(4)}°E (±${accuracy}m)<br/>
             Nearest: <strong>${closestSiteName}</strong> (${minDistance} km)
@@ -415,7 +415,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
           {/* Quick Maharashtra Coastal GNSS Pin */}
           <button
             onClick={() => handleAcquireGPS(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00FF9C]/20 hover:bg-[#00FF9C]/30 text-[#00FF9C] border border-[#00FF9C]/50 transition-all cursor-pointer shadow-[0_0_12px_rgba(0,255,156,0.2)]"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00F5D4]/20 hover:bg-[#00F5D4]/30 text-[#00F5D4] border border-[#00F5D4]/50 transition-all cursor-pointer shadow-[0_0_12px_rgba(0,245,212,0.2)]"
           >
             <Target className="w-3.5 h-3.5" />
             <span>LOCK MH SENSOR</span>
@@ -528,7 +528,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
           {/* Bottom Coordinate Reference */}
           <div className="bg-[#050F1A] border-t border-[#14354D] px-3 py-1.5 flex items-center justify-between text-[10px] text-[#64748B] z-20">
             <span>DATUM: WGS-84 / EPSG:4326 • HIGH-RES SATELLITE TILES</span>
-            <span className="text-[#00FF9C] font-bold">MAHARASHTRA KONKAN MONITORING ACTIVE</span>
+            <span className="text-[#00F5D4] font-bold">MAHARASHTRA KONKAN MONITORING ACTIVE</span>
           </div>
         </div>
 
@@ -564,7 +564,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
                 </div>
                 <div className="p-2.5 bg-[#0B2236] rounded border border-[#14354D]">
                   <span className="text-[9px] uppercase tracking-wider text-[#64748B] block">LiDAR Canopy Height</span>
-                  <span className="font-bold text-[#00FF9C] text-xs">{selectedSite.telemetry.drone.canopyHeightM} m</span>
+                  <span className="font-bold text-[#00F5D4] text-xs">{selectedSite.telemetry.drone.canopyHeightM} m</span>
                 </div>
                 <div className="p-2.5 bg-[#0B2236] rounded border border-[#14354D]">
                   <span className="text-[9px] uppercase tracking-wider text-[#64748B] block">Soil Carbon (30cm)</span>

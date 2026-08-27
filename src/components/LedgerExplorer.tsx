@@ -52,7 +52,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
       case 'GENESIS':
         return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#14354D] text-[#94A3B8] border border-[#14354D]">GENESIS</span>;
       case 'CREDIT_MINT':
-        return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#00FF9C]/15 text-[#00FF9C] border border-[#00FF9C]/40">MINT_EVENT</span>;
+        return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/40">MINT_EVENT</span>;
       case 'BUFFER_REVERSAL_BURN':
         return <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#F87171]/20 text-[#F87171] border border-[#F87171]/60">REVERSAL_BURN</span>;
       case 'CREDIT_RETIREMENT':
@@ -69,7 +69,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
       <div className="bg-[#050F1A] border border-[#14354D] rounded-lg p-5">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#14354D]">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#00FF9C] mb-1">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#00F5D4] mb-1">
               <Cpu className="w-4 h-4" />
               <span>Permissioned Cryptographic Hash Chain</span>
             </div>
@@ -86,7 +86,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
             <button
               onClick={onVerifyLedger}
               disabled={isVerifying}
-              className="flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-bold uppercase tracking-wider bg-[#00FF9C] hover:bg-[#00B4D8] text-[#030712] transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_12px_rgba(0,255,156,0.25)]"
+              className="flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-bold uppercase tracking-wider bg-[#00F5D4] hover:bg-[#00B4D8] text-[#030712] transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_12px_rgba(0,245,212,0.25)]"
             >
               {isVerifying ? (
                 <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -169,11 +169,11 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
         {verificationResult && (
           <div className={`mt-4 p-4 rounded-lg border flex items-start gap-3.5 font-mono ${
             verificationResult.isValid
-              ? 'bg-[#00FF9C]/10 border-[#00FF9C]/40 text-[#00FF9C]'
+              ? 'bg-[#00F5D4]/10 border-[#00F5D4]/40 text-[#00F5D4]'
               : 'bg-[#F87171]/15 border-[#F87171] text-[#F87171] animate-pulse'
           }`}>
             <div className={`w-8 h-8 rounded flex items-center justify-center shrink-0 ${
-              verificationResult.isValid ? 'bg-[#00FF9C] text-[#030712]' : 'bg-[#F87171] text-white'
+              verificationResult.isValid ? 'bg-[#00F5D4] text-[#030712]' : 'bg-[#F87171] text-white'
             }`}>
               {verificationResult.isValid ? <CheckCircle2 className="w-5 h-5" /> : <AlertTriangle className="w-5 h-5" />}
             </div>
@@ -193,7 +193,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
                 <div className="mt-2 text-xs font-mono bg-[#030712] p-2.5 rounded border border-[#F87171]/60 text-white space-y-1">
                   <div>First Invalid Target: <span className="font-bold text-[#F87171]">Block #{verificationResult.firstInvalidBlockIndex}</span></div>
                   <div className="truncate text-[#94A3B8]">Stored Hash: {verificationResult.actualHash}</div>
-                  <div className="truncate text-[#00FF9C]">Expected Canonical Hash: {verificationResult.expectedHash}</div>
+                  <div className="truncate text-[#00F5D4]">Expected Canonical Hash: {verificationResult.expectedHash}</div>
                 </div>
               )}
             </div>
@@ -224,7 +224,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
                   <div className={`flex items-center gap-1.5 px-3 py-0.5 rounded text-[10px] font-mono border ${
                     isInvalid 
                       ? 'bg-[#F87171]/20 text-[#F87171] border-[#F87171]' 
-                      : 'bg-[#030712] text-[#00FF9C]/80 border-[#14354D]'
+                      : 'bg-[#030712] text-[#00F5D4]/80 border-[#14354D]'
                   }`}>
                     <Link className="w-3 h-3 text-[#00B4D8]" />
                     <span>PREV_HASH: {block.previousHash.slice(0, 12)}...{block.previousHash.slice(-8)}</span>
@@ -239,7 +239,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
                     ? 'border-[#F87171] ring-1 ring-[#F87171]/50 shadow-[0_0_15px_rgba(255,68,68,0.3)]' 
                     : (block.tampered 
                         ? 'border-[#FBBF24]' 
-                        : 'border-[#14354D] hover:border-[#00FF9C]/40')
+                        : 'border-[#14354D] hover:border-[#00F5D4]/40')
                 }`}
               >
                 {/* Block Card Top Row */}
@@ -248,7 +248,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
                     <div className={`w-8 h-8 rounded flex items-center justify-center font-mono font-bold text-xs ${
                       block.index === 0 
                         ? 'bg-[#14354D] text-white' 
-                        : (isInvalid ? 'bg-[#F87171]/20 text-[#F87171] border border-[#F87171]' : 'bg-[#00FF9C]/15 text-[#00FF9C] border border-[#00FF9C]/40')
+                        : (isInvalid ? 'bg-[#F87171]/20 text-[#F87171] border border-[#F87171]' : 'bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/40')
                     }`}>
                       #{block.index}
                     </div>
@@ -298,7 +298,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
                     {block.data.totalTCO2e !== undefined && (
                       <div>
                         <span className="text-[#64748B] text-[10px] uppercase">Tonnage: </span>
-                        <span className="font-bold text-[#00FF9C]">{block.data.totalTCO2e.toLocaleString()} tCO₂e</span>
+                        <span className="font-bold text-[#00F5D4]">{block.data.totalTCO2e.toLocaleString()} tCO₂e</span>
                       </div>
                     )}
                     {block.data.tradeableCredits !== undefined && (
@@ -340,7 +340,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
                         <span className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] block mb-1">Cryptographic Headers</span>
                         <div className="space-y-1 text-[11px] bg-[#050F1A] p-3 rounded border border-[#14354D]">
                           <div><span className="text-[#64748B]">Index:</span> {block.index}</div>
-                          <div className="truncate"><span className="text-[#64748B]">Hash:</span> <span className="text-[#00FF9C]">{block.hash}</span></div>
+                          <div className="truncate"><span className="text-[#64748B]">Hash:</span> <span className="text-[#00F5D4]">{block.hash}</span></div>
                           <div className="truncate"><span className="text-[#64748B]">PrevHash:</span> {block.previousHash}</div>
                           <div className="truncate"><span className="text-[#64748B]">MerkleRoot:</span> {block.merkleRoot}</div>
                           <div className="truncate"><span className="text-[#64748B]">ValidatorSig:</span> {block.validatorSignature}</div>
@@ -349,7 +349,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({
 
                       <div>
                         <span className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] block mb-1">Payload JSON</span>
-                        <pre className="p-3 rounded bg-[#050F1A] border border-[#14354D] text-[11px] text-[#00FF9C] overflow-x-auto max-h-36">
+                        <pre className="p-3 rounded bg-[#050F1A] border border-[#14354D] text-[11px] text-[#00F5D4] overflow-x-auto max-h-36">
                           {JSON.stringify(block.data, null, 2)}
                         </pre>
                       </div>

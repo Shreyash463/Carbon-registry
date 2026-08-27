@@ -88,7 +88,7 @@ export const RetireModal: React.FC<RetireModalProps> = ({
                 Permanently Retire Carbon Token
               </h2>
               <p className="text-xs font-mono text-[#64748B]">
-                Token ID: <span className="font-mono text-[#00FF9C] font-bold">{credit.id}</span>
+                Token ID: <span className="font-mono text-[#00F5D4] font-bold">{credit.id}</span>
               </p>
             </div>
           </div>
@@ -110,7 +110,7 @@ export const RetireModal: React.FC<RetireModalProps> = ({
             </div>
             <div className="flex justify-between items-center text-[#64748B] mb-1">
               <span>Credit Volume:</span>
-              <span className="font-bold text-[#00FF9C]">1.0 tCO₂e (Metric Tonne)</span>
+              <span className="font-bold text-[#00F5D4]">1.0 tCO₂e (Metric Tonne)</span>
             </div>
             <div className="flex justify-between items-center text-[#64748B]">
               <span>Standard Protocol:</span>

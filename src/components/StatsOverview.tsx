@@ -39,14 +39,14 @@ export const StatsOverview: React.FC<StatsOverviewProps> = ({ stats }) => {
       </div>
 
       {/* 3. Tradeable Active Pool (80%) */}
-      <div className="bg-[#050F1A] border border-[#10B981]/40 rounded-lg p-3.5 flex flex-col justify-between hover:border-[#00FF9C] transition-colors shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+      <div className="bg-[#050F1A] border border-[#10B981]/40 rounded-lg p-3.5 flex flex-col justify-between hover:border-[#00F5D4] transition-colors shadow-[0_0_12px_rgba(16,185,129,0.15)]">
         <div className="flex items-center justify-between text-[#64748B] mb-2">
-          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#00FF9C]">Tradeable Pool</span>
-          <Award className="w-3.5 h-3.5 text-[#00FF9C]" />
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#00F5D4]">Tradeable Pool</span>
+          <Award className="w-3.5 h-3.5 text-[#00F5D4]" />
         </div>
         <div>
-          <div className="text-xl font-mono font-bold text-[#00FF9C] tracking-tight">
-            {stats.totalTradeableActive.toLocaleString()} <span className="text-xs font-normal text-[#00FF9C]/70">tCO₂e</span>
+          <div className="text-xl font-mono font-bold text-[#00F5D4] tracking-tight">
+            {stats.totalTradeableActive.toLocaleString()} <span className="text-xs font-normal text-[#00F5D4]/70">tCO₂e</span>
           </div>
           <p className="text-[10px] font-mono uppercase text-[#00F5D4] mt-1">80% Active Pool</p>
         </div>

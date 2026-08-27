@@ -90,8 +90,8 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
           </div>
 
           <div className="p-4 bg-[#030712] rounded border border-[#14354D]">
-            <span className="text-[10px] font-mono text-[#00FF9C] uppercase tracking-widest block">Active Tradeable Pool</span>
-            <div className="text-2xl font-bold font-mono text-[#00FF9C] mt-1">
+            <span className="text-[10px] font-mono text-[#00F5D4] uppercase tracking-widest block">Active Tradeable Pool</span>
+            <div className="text-2xl font-bold font-mono text-[#00F5D4] mt-1">
               {stats.totalTradeableActive.toLocaleString()} <span className="text-xs font-normal text-[#94A3B8]">tCO₂e</span>
             </div>
             <span className="text-[10px] font-mono text-[#64748B] mt-1 block">100% Insured & Collateralized</span>
@@ -105,12 +105,12 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
             <span className="text-[10px] font-mono text-[#64748B] mt-1 block">Compensated by Buffer Burns</span>
           </div>
 
-          <div className="p-4 bg-[#030712] rounded border border-[#00FF9C]/40">
-            <span className="text-[10px] font-mono text-[#00FF9C] uppercase tracking-widest block">Registry Solvency Score</span>
+          <div className="p-4 bg-[#030712] rounded border border-[#00F5D4]/40">
+            <span className="text-[10px] font-mono text-[#00F5D4] uppercase tracking-widest block">Registry Solvency Score</span>
             <div className="text-2xl font-bold font-mono text-white mt-1">
               100.0%
             </div>
-            <span className="text-[10px] font-mono text-[#00FF9C] mt-1 block">Zero Phantom Credit Exposure</span>
+            <span className="text-[10px] font-mono text-[#00F5D4] mt-1 block">Zero Phantom Credit Exposure</span>
           </div>
 
         </div>
@@ -237,13 +237,13 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
                     </p>
                   </div>
 
-                  <div className="p-3.5 rounded bg-[#00FF9C]/10 border border-[#00FF9C]/40 text-xs">
-                    <div className="flex items-center gap-2 text-[#00FF9C] font-bold mb-1 uppercase tracking-wider">
+                  <div className="p-3.5 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/40 text-xs">
+                    <div className="flex items-center gap-2 text-[#00F5D4] font-bold mb-1 uppercase tracking-wider">
                       <CheckCircle2 className="w-4 h-4" />
                       <span>Buffer Reserve Automatically Compensated</span>
                     </div>
                     <p className="text-[#E0E7EB] text-[11px] leading-relaxed">
-                      <strong className="text-[#00FF9C]">{lastReversalOutcome.burnedCredits.toLocaleString()} Buffer Reserve units</strong> were permanently burned on the blockchain ledger (Block Type: <span className="text-[#F87171] font-bold">BUFFER_REVERSAL_BURN</span>).
+                      <strong className="text-[#00F5D4]">{lastReversalOutcome.burnedCredits.toLocaleString()} Buffer Reserve units</strong> were permanently burned on the blockchain ledger (Block Type: <span className="text-[#F87171] font-bold">BUFFER_REVERSAL_BURN</span>).
                     </p>
                   </div>
 
@@ -271,7 +271,7 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
 
             <div className="pt-3 border-t border-[#14354D] text-[10px] text-[#64748B] flex items-center justify-between uppercase tracking-widest">
               <span>Smart Contract Execution</span>
-              <span className="text-[#00FF9C] font-bold">Consensus-Guaranteed</span>
+              <span className="text-[#00F5D4] font-bold">Consensus-Guaranteed</span>
             </div>
           </div>
 
@@ -308,7 +308,7 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                       site.verificationStatus === 'DEGRADED_ALERT' 
                         ? 'bg-[#F87171]/20 text-[#F87171] border border-[#F87171]/60' 
-                        : 'bg-[#00FF9C]/15 text-[#00FF9C] border border-[#00FF9C]/40'
+                        : 'bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/40'
                     }`}>
                       {site.verificationStatus}
                     </span>

@@ -33,8 +33,8 @@ export const SiteCard: React.FC<SiteCardProps> = ({
     switch (status) {
       case 'VERIFIED':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#00FF9C]/15 text-[#00FF9C] border border-[#00FF9C]/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00FF9C] shadow-[0_0_6px_#00FF9C] animate-pulse"></span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] shadow-[0_0_6px_#00F5D4] animate-pulse"></span>
             MINTED / ACTIVE
           </span>
         );
@@ -63,7 +63,7 @@ export const SiteCard: React.FC<SiteCardProps> = ({
   };
 
   const getHealthColor = (score: number) => {
-    if (score >= 90) return 'text-[#00FF9C]';
+    if (score >= 90) return 'text-[#00F5D4]';
     if (score >= 75) return 'text-[#00F5D4]';
     if (score >= 55) return 'text-[#FBBF24]';
     return 'text-[#F87171]';
@@ -109,7 +109,7 @@ export const SiteCard: React.FC<SiteCardProps> = ({
           </div>
           <div>
             <span className="text-[#64748B] block text-[10px] uppercase tracking-widest">Minted Pool</span>
-            <span className="font-bold text-[#00FF9C]">
+            <span className="font-bold text-[#00F5D4]">
               {site.totalCreditsMinted > 0 ? `${site.totalCreditsMinted.toLocaleString()} t` : '0.0 t'}
             </span>
           </div>
@@ -173,13 +173,13 @@ export const SiteCard: React.FC<SiteCardProps> = ({
         {/* Source 3: Ground IoT */}
         <div className="bg-[#0B2236] border border-[#14354D] rounded p-2 flex items-center justify-between text-xs font-mono">
           <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded bg-[#00FF9C]/15 text-[#00FF9C] flex items-center justify-center border border-[#00FF9C]/30 shrink-0">
+            <div className="w-6 h-6 rounded bg-[#00F5D4]/15 text-[#00F5D4] flex items-center justify-center border border-[#00F5D4]/30 shrink-0">
               <Radio className="w-3 h-3" />
             </div>
             <div>
               <div className="text-[#E2E8F0] text-[11px] font-semibold flex items-center gap-1.5">
                 <span>IoT Mesh Sensor</span>
-                <span className="text-[10px] text-[#00FF9C] font-bold">SOC {site.telemetry.groundSensors.socPercent30cm}%</span>
+                <span className="text-[10px] text-[#00F5D4] font-bold">SOC {site.telemetry.groundSensors.socPercent30cm}%</span>
               </div>
               <div className="text-[10px] text-[#64748B]">
                 Salinity: {site.telemetry.groundSensors.salinityPsu} PSU | {site.telemetry.groundSensors.redoxPotentialMv} mV
@@ -188,7 +188,7 @@ export const SiteCard: React.FC<SiteCardProps> = ({
           </div>
           <div className="text-right shrink-0">
             <span className="text-[9px] text-[#64748B] uppercase block">{site.telemetry.groundSensors.activeNodeCount} Nodes</span>
-            <span className="text-[10px] text-[#00FF9C] font-bold">{site.telemetry.groundSensors.meshStatus}</span>
+            <span className="text-[10px] text-[#00F5D4] font-bold">{site.telemetry.groundSensors.meshStatus}</span>
           </div>
         </div>
       </div>

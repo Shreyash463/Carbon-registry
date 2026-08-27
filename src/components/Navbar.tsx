@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-extrabold tracking-wider uppercase text-white leading-none flex items-center gap-1.5">
-                <span className="bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#00FF9C] bg-clip-text text-transparent">POSEIDON</span>
+                <span className="bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#00F5D4] bg-clip-text text-transparent">POSEIDON</span>
                 <span className="text-xs font-mono font-normal text-[#94A3B8] tracking-widest">REGISTRY</span>
               </span>
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#00B4D8] mt-1">
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-mono font-bold tracking-wider uppercase transition-all whitespace-nowrap cursor-pointer ${
                 isCompromised
                   ? 'bg-[#F87171]/20 text-[#F87171] border border-[#F87171] hover:bg-[#F87171]/30 shadow-[0_0_12px_rgba(248,113,113,0.3)] animate-pulse'
-                  : 'bg-[#0B2236] text-[#00FF9C] border border-[#00FF9C]/40 hover:bg-[#00FF9C]/10 hover:border-[#00FF9C] shadow-[0_0_10px_rgba(0,255,156,0.2)]'
+                  : 'bg-[#0B2236] text-[#00F5D4] border border-[#00F5D4]/40 hover:bg-[#00F5D4]/10 hover:border-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.2)]'
               }`}
             >
               {isVerifying ? (
@@ -110,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               ) : isCompromised ? (
                 <AlertTriangle className="w-3.5 h-3.5 text-[#F87171]" />
               ) : (
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#00FF9C]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00F5D4]" />
               )}
               <span>
                 {isVerifying ? 'AUDITING...' : isCompromised ? 'TAMPERED!' : 'LEDGER VALID'}

@@ -41,8 +41,8 @@ export const CreditsTable: React.FC<CreditsTableProps> = ({
     switch (status) {
       case 'TRADEABLE':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#00FF9C]/15 text-[#00FF9C] border border-[#00FF9C]/40">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00FF9C] shadow-[0_0_6px_#00FF9C]"></span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#00F5D4]/15 text-[#00F5D4] border border-[#00F5D4]/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] shadow-[0_0_6px_#00F5D4]"></span>
             ACTIVE TRADEABLE
           </span>
         );
@@ -90,8 +90,8 @@ export const CreditsTable: React.FC<CreditsTableProps> = ({
               onClick={() => setFilterStatus(tab.id)}
               className={`px-3 py-1.5 rounded text-xs uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
                 filterStatus === tab.id
-                  ? 'bg-[#00FF9C] text-[#030712] font-bold shadow-[0_0_10px_rgba(0,255,156,0.3)]'
-                  : 'bg-[#0B2236] text-[#94A3B8] border border-[#14354D] hover:text-white hover:border-[#00FF9C]/40'
+                  ? 'bg-[#00F5D4] text-[#030712] font-bold shadow-[0_0_10px_rgba(0,245,212,0.3)]'
+                  : 'bg-[#0B2236] text-[#94A3B8] border border-[#14354D] hover:text-white hover:border-[#00F5D4]/40'
               }`}
             >
               {tab.label}
@@ -107,7 +107,7 @@ export const CreditsTable: React.FC<CreditsTableProps> = ({
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search Serial, Site, Beneficiary..."
-            className="w-full bg-[#030712] border border-[#14354D] rounded pl-9 pr-3 py-1.5 text-xs font-mono text-white placeholder-[#64748B] focus:outline-none focus:border-[#00FF9C]"
+            className="w-full bg-[#030712] border border-[#14354D] rounded pl-9 pr-3 py-1.5 text-xs font-mono text-white placeholder-[#64748B] focus:outline-none focus:border-[#00F5D4]"
           />
         </div>
 
@@ -155,7 +155,7 @@ export const CreditsTable: React.FC<CreditsTableProps> = ({
                     </td>
 
                     {/* Volume */}
-                    <td className="py-3 px-4 font-bold text-[#00FF9C]">
+                    <td className="py-3 px-4 font-bold text-[#00F5D4]">
                       {credit.tonnage.toFixed(1)} tCO₂e
                     </td>
 

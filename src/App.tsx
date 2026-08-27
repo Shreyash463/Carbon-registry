@@ -230,14 +230,14 @@ export default function App() {
         {toastMessage && (
           <div className={`mb-6 p-3.5 rounded border text-xs font-mono flex items-center justify-between shadow-lg transition-all animate-in fade-in slide-in-from-top-2 ${
             toastMessage.type === 'success'
-              ? 'bg-[#05080A] border-[#00FF9C] text-[#00FF9C] shadow-[0_0_15px_rgba(0,255,156,0.2)]'
+              ? 'bg-[#030712] border-[#00F5D4] text-[#00F5D4] shadow-[0_0_15px_rgba(0,245,212,0.2)]'
               : toastMessage.type === 'error'
-                ? 'bg-[#05080A] border-[#FF4444] text-[#FF4444] shadow-[0_0_15px_rgba(255,68,68,0.2)]'
-                : 'bg-[#05080A] border-[#FF8A00] text-[#FF8A00] shadow-[0_0_15px_rgba(255,138,0,0.2)]'
+                ? 'bg-[#030712] border-[#FF4444] text-[#FF4444] shadow-[0_0_15px_rgba(255,68,68,0.2)]'
+                : 'bg-[#030712] border-[#FF8A00] text-[#FF8A00] shadow-[0_0_15px_rgba(255,138,0,0.2)]'
           }`}>
             <div className="flex items-center gap-2.5">
               {toastMessage.type === 'success' ? (
-                <CheckCircle2 className="w-4 h-4 text-[#00FF9C] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#00F5D4] shrink-0" />
               ) : (
                 <AlertTriangle className="w-4 h-4 text-[#FF8A00] shrink-0" />
               )}
