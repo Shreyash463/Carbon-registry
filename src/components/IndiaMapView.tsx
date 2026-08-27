@@ -385,13 +385,13 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
   };
 
   return (
-    <div className="bg-[#080D11] border border-[#1E293B] rounded-lg p-5 mb-8 font-mono">
+    <div className="bg-[#050F1A] border border-[#14354D] rounded-lg p-5 mb-8 font-mono">
       
       {/* Top Header: Title, Controls, GPS Trigger */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4 pb-3 border-b border-[#1E293B]">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4 pb-3 border-b border-[#14354D]">
         <div>
-          <div className="flex items-center gap-2 text-xs text-[#00FF9C] uppercase tracking-[0.2em] mb-1 font-bold">
-            <Radio className="w-4 h-4 text-[#00FF9C] animate-pulse" />
+          <div className="flex items-center gap-2 text-xs text-[#00F5D4] uppercase tracking-[0.2em] mb-1 font-bold">
+            <Radio className="w-4 h-4 text-[#00F5D4] animate-pulse" />
             <span>High-Resolution GIS Radar • Maharashtra Priority Fleet</span>
           </div>
           <h2 className="text-base font-bold uppercase tracking-wider text-white flex items-center gap-2">
@@ -406,7 +406,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
           <button
             onClick={() => handleAcquireGPS(false)}
             disabled={isLocating}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00D1FF]/20 hover:bg-[#00D1FF]/30 text-[#00D1FF] border border-[#00D1FF]/50 transition-all cursor-pointer shadow-[0_0_12px_rgba(0,209,255,0.2)] disabled:opacity-50"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00F5D4]/20 hover:bg-[#00F5D4]/30 text-[#00F5D4] border border-[#00F5D4]/50 transition-all cursor-pointer shadow-[0_0_12px_rgba(0,245,212,0.2)] disabled:opacity-50"
           >
             <LocateFixed className={`w-3.5 h-3.5 ${isLocating ? 'animate-spin' : ''}`} />
             <span>{isLocating ? 'FIXING GPS...' : 'LOCATE LIVE GPS'}</span>
@@ -422,11 +422,11 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
           </button>
 
           {/* Map Layer Switcher (Satellite / Dark / Topo) */}
-          <div className="flex items-center bg-[#05080A] rounded border border-[#1E293B] p-0.5 text-xs">
+          <div className="flex items-center bg-[#030712] rounded border border-[#14354D] p-0.5 text-xs">
             <button
               onClick={() => setActiveLayer('SATELLITE')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded uppercase tracking-wider transition-colors cursor-pointer ${
-                activeLayer === 'SATELLITE' ? 'bg-[#161F27] text-[#00FF9C] font-bold border border-[#00FF9C]/30' : 'text-[#64748B] hover:text-white'
+                activeLayer === 'SATELLITE' ? 'bg-[#0B2236] text-[#00F5D4] font-bold border border-[#00F5D4]/30' : 'text-[#64748B] hover:text-white'
               }`}
             >
               <Satellite className="w-3 h-3" />
@@ -435,7 +435,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
             <button
               onClick={() => setActiveLayer('DARK')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded uppercase tracking-wider transition-colors cursor-pointer ${
-                activeLayer === 'DARK' ? 'bg-[#161F27] text-[#00D1FF] font-bold border border-[#00D1FF]/30' : 'text-[#64748B] hover:text-white'
+                activeLayer === 'DARK' ? 'bg-[#0B2236] text-[#00B4D8] font-bold border border-[#00B4D8]/30' : 'text-[#64748B] hover:text-white'
               }`}
             >
               <Layers className="w-3 h-3" />
@@ -444,7 +444,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
             <button
               onClick={() => setActiveLayer('STREET')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded uppercase tracking-wider transition-colors cursor-pointer ${
-                activeLayer === 'STREET' ? 'bg-[#161F27] text-[#FF8A00] font-bold border border-[#FF8A00]/30' : 'text-[#64748B] hover:text-white'
+                activeLayer === 'STREET' ? 'bg-[#0B2236] text-[#10B981] font-bold border border-[#10B981]/30' : 'text-[#64748B] hover:text-white'
               }`}
             >
               <MapIcon className="w-3 h-3" />
@@ -456,9 +456,9 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
       </div>
 
       {/* Region Presets Focus Bar (Maharashtra Prioritized First) */}
-      <div className="flex flex-wrap items-center gap-1.5 mb-4 pb-3 border-b border-[#1E293B]/70 text-xs">
+      <div className="flex flex-wrap items-center gap-1.5 mb-4 pb-3 border-b border-[#14354D]/70 text-xs">
         <span className="text-[10px] text-[#64748B] uppercase tracking-widest mr-2 flex items-center gap-1">
-          <Compass className="w-3.5 h-3.5 text-[#00FF9C]" />
+          <Compass className="w-3.5 h-3.5 text-[#00F5D4]" />
           <span>Quick Focus:</span>
         </span>
 
@@ -473,8 +473,8 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
             onClick={() => handleSelectRegionPreset(preset.id)}
             className={`px-3 py-1 rounded text-xs uppercase tracking-wider transition-all cursor-pointer ${
               activeRegion === preset.id
-                ? 'bg-[#00FF9C] text-[#05080A] font-bold shadow-[0_0_10px_rgba(0,255,156,0.25)]'
-                : 'bg-[#05080A] text-[#94A3B8] border border-[#1E293B] hover:text-white hover:border-[#00FF9C]/40'
+                ? 'bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#10B981] text-[#030712] font-bold shadow-[0_0_12px_rgba(0,245,212,0.3)]'
+                : 'bg-[#030712] text-[#94A3B8] border border-[#14354D] hover:text-white hover:border-[#00F5D4]/40'
             }`}
           >
             {preset.label}
@@ -486,16 +486,16 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
       {gpsNotice && (
         <div className={`mb-4 p-3 rounded text-xs flex items-center justify-between gap-3 animate-in fade-in ${
           gpsNotice.isError
-            ? 'bg-[#FF8A00]/15 border border-[#FF8A00] text-[#FF8A00]'
-            : 'bg-[#00D1FF]/10 border border-[#00D1FF]/40 text-[#E0E7EB]'
+            ? 'bg-[#FBBF24]/15 border border-[#FBBF24] text-[#FBBF24]'
+            : 'bg-[#00F5D4]/10 border border-[#00F5D4]/40 text-[#E2E8F0]'
         }`}>
           <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-[#00D1FF] shadow-[0_0_8px_#00D1FF] animate-ping"></span>
+            <span className="w-2 h-2 rounded-full bg-[#00F5D4] shadow-[0_0_8px_#00F5D4] animate-ping"></span>
             <div>
               <span className="font-bold text-white uppercase tracking-wider">
                 {gpsLocation?.isSimulated ? '📡 COASTAL GNSS NODE STREAMING:' : '🎯 LIVE GPS GNSS FIX:'}
               </span>{' '}
-              <span className="text-[#00D1FF] font-mono">
+              <span className="text-[#00F5D4] font-mono font-bold">
                 {gpsLocation ? `${gpsLocation.lat.toFixed(4)}°N, ${gpsLocation.lng.toFixed(4)}°E (±${gpsLocation.accuracyMeters}m)` : ''}
               </span>{' '}
               <span className="text-[#94A3B8] ml-2">
@@ -516,17 +516,17 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left: High-Res Interactive Satellite Map */}
-        <div className="lg:col-span-7 bg-[#05080A] border border-[#1E293B] rounded-lg overflow-hidden relative min-h-[400px] flex flex-col justify-between shadow-inner">
+        <div className="lg:col-span-7 bg-[#030712] border border-[#14354D] rounded-lg overflow-hidden relative min-h-[400px] flex flex-col justify-between shadow-inner">
           
           {/* Map canvas */}
           <div 
             ref={mapContainerRef} 
-            className="w-full h-[400px] bg-[#05080A] z-10"
+            className="w-full h-[400px] bg-[#030712] z-10"
             style={{ filter: activeLayer === 'DARK' ? 'none' : 'contrast(1.05) brightness(0.95)' }}
           />
 
           {/* Bottom Coordinate Reference */}
-          <div className="bg-[#05080A] border-t border-[#1E293B] px-3 py-1.5 flex items-center justify-between text-[10px] text-[#64748B] z-20">
+          <div className="bg-[#050F1A] border-t border-[#14354D] px-3 py-1.5 flex items-center justify-between text-[10px] text-[#64748B] z-20">
             <span>DATUM: WGS-84 / EPSG:4326 • HIGH-RES SATELLITE TILES</span>
             <span className="text-[#00FF9C] font-bold">MAHARASHTRA KONKAN MONITORING ACTIVE</span>
           </div>
@@ -534,10 +534,10 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
 
         {/* Right: Selected Site Detailed Telemetry Card */}
         {selectedSite && (
-          <div className="lg:col-span-5 bg-[#05080A] border border-[#1E293B] rounded-lg p-5 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-[#050F1A] border border-[#14354D] rounded-lg p-5 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#00FF9C] font-bold">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#00F5D4] font-bold">
                   {selectedSite.state === 'Maharashtra' ? '⭐ PRIORITY MAHARASHTRA SECTOR' : 'NATIONAL MONITORING SECTOR'}
                 </span>
                 <span className="text-[10px] text-[#64748B]">
@@ -548,27 +548,27 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
               <h3 className="text-base font-bold text-white uppercase tracking-tight mb-1">
                 {selectedSite.name}
               </h3>
-              <p className="text-[11px] text-[#00D1FF] mb-3 uppercase">
+              <p className="text-[11px] text-[#00B4D8] mb-3 uppercase">
                 {selectedSite.region} • {selectedSite.ecosystemType}
               </p>
 
               {/* Grid telemetry summary */}
               <div className="grid grid-cols-2 gap-2 text-xs mb-3">
-                <div className="p-2.5 bg-[#080D11] rounded border border-[#1E293B]">
+                <div className="p-2.5 bg-[#0B2236] rounded border border-[#14354D]">
                   <span className="text-[9px] uppercase tracking-wider text-[#64748B] block">Monitored Area</span>
                   <span className="font-bold text-white text-xs">{selectedSite.totalAreaHa.toLocaleString()} Ha</span>
                 </div>
-                <div className="p-2.5 bg-[#080D11] rounded border border-[#1E293B]">
+                <div className="p-2.5 bg-[#0B2236] rounded border border-[#14354D]">
                   <span className="text-[9px] uppercase tracking-wider text-[#64748B] block">Sentinel-2 NDVI</span>
-                  <span className="font-bold text-[#00D1FF] text-xs">{selectedSite.telemetry.satellite.ndvi}</span>
+                  <span className="font-bold text-[#00B4D8] text-xs">{selectedSite.telemetry.satellite.ndvi}</span>
                 </div>
-                <div className="p-2.5 bg-[#080D11] rounded border border-[#1E293B]">
+                <div className="p-2.5 bg-[#0B2236] rounded border border-[#14354D]">
                   <span className="text-[9px] uppercase tracking-wider text-[#64748B] block">LiDAR Canopy Height</span>
                   <span className="font-bold text-[#00FF9C] text-xs">{selectedSite.telemetry.drone.canopyHeightM} m</span>
                 </div>
-                <div className="p-2.5 bg-[#080D11] rounded border border-[#1E293B]">
+                <div className="p-2.5 bg-[#0B2236] rounded border border-[#14354D]">
                   <span className="text-[9px] uppercase tracking-wider text-[#64748B] block">Soil Carbon (30cm)</span>
-                  <span className="font-bold text-[#FF8A00] text-xs">{selectedSite.telemetry.groundSensors.socPercent30cm}% SOC</span>
+                  <span className="font-bold text-[#00F5D4] text-xs">{selectedSite.telemetry.groundSensors.socPercent30cm}% SOC</span>
                 </div>
               </div>
 
@@ -577,7 +577,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
                 <span className="text-[10px] uppercase tracking-widest text-[#64748B] block mb-1">Dominant Mangrove Species</span>
                 <div className="flex flex-wrap gap-1">
                   {selectedSite.dominantSpecies.map((sp, i) => (
-                    <span key={i} className="text-[10px] italic px-2 py-0.5 rounded bg-[#080D11] text-[#94A3B8] border border-[#1E293B]">
+                    <span key={i} className="text-[10px] italic px-2 py-0.5 rounded bg-[#0B2236] text-[#94A3B8] border border-[#14354D]">
                       {sp}
                     </span>
                   ))}
@@ -586,10 +586,10 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
             </div>
 
             {/* Run verification button */}
-            <div className="pt-3 border-t border-[#1E293B] flex items-center gap-2">
+            <div className="pt-3 border-t border-[#14354D] flex items-center gap-2">
               <button
                 onClick={() => onVerifySite(selectedSite)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded bg-[#00FF9C] hover:bg-[#00D1FF] text-[#05080A] text-xs font-bold tracking-widest uppercase transition-all cursor-pointer shadow-[0_0_12px_rgba(0,255,156,0.2)]"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#10B981] hover:opacity-90 text-[#030712] text-xs font-bold tracking-widest uppercase transition-all cursor-pointer shadow-[0_0_15px_rgba(0,245,212,0.3)]"
               >
                 <Play className="w-3 h-3 fill-current" />
                 <span>LAUNCH MRV CONSENSUS RUN</span>

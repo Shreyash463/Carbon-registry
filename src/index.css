@@ -3,21 +3,25 @@
 
 @layer base {
   :root {
-    --bg-main: #05080A;
-    --panel-dark: #080D11;
-    --card-surface: #0B1218;
-    --card-inner: #0F171C;
-    --card-elevated: #161F27;
-    --border-dim: #1E293B;
+    --bg-main: #030712;
+    --panel-dark: #050F1A;
+    --card-surface: #071724;
+    --card-inner: #0B2236;
+    --card-elevated: #102E46;
+    --border-dim: #14354D;
+    --turquoise: #00F5D4;
+    --ocean-blue: #00B4D8;
+    --sea-green: #10B981;
+    --emerald: #00FF9C;
     --neon-green: #00FF9C;
-    --neon-cyan: #00D1FF;
-    --neon-amber: #FF8A00;
-    --neon-red: #FF4444;
+    --neon-cyan: #00F5D4;
+    --neon-amber: #FBBF24;
+    --neon-red: #F87171;
   }
 
   body {
-    background-color: #05080A;
-    color: #E0E7EB;
+    background-color: #030712;
+    color: #E2E8F0;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 

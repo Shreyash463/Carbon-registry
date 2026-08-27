@@ -199,16 +199,20 @@ export default function App() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#05080A] flex flex-col items-center justify-center text-[#E0E7EB] font-mono">
-        <RefreshCw className="w-8 h-8 animate-spin text-[#00FF9C] mb-3" />
-        <p className="text-xs uppercase font-bold tracking-widest text-white">Booting Indian Blue Carbon MRV Registry...</p>
-        <p className="text-[10px] text-[#64748B] mt-1 tracking-wider uppercase">Initializing SHA-256 Ledger & Ingesting Mangrove Telemetry</p>
+      <div className="min-h-screen bg-[#030712] flex flex-col items-center justify-center text-[#E2E8F0] font-mono">
+        <div className="w-12 h-12 rounded bg-gradient-to-br from-[#00F5D4] via-[#00B4D8] to-[#10B981] flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(0,245,212,0.4)] rotate-45 animate-pulse">
+          <div className="w-5 h-5 bg-[#030712] rounded-xs flex items-center justify-center">
+            <div className="w-2 h-2 bg-[#00F5D4] rounded-full"></div>
+          </div>
+        </div>
+        <p className="text-sm uppercase font-bold tracking-widest text-white">Booting POSEIDON Blue Carbon Registry...</p>
+        <p className="text-[10px] text-[#00B4D8] mt-1 tracking-wider uppercase">Ingesting Sentinel-2 Telemetry & Initializing SHA-256 Ledger</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#05080A] text-[#E0E7EB] flex flex-col antialiased selection:bg-[#00FF9C]/30 selection:text-[#00FF9C]">
+    <div className="min-h-screen bg-[#030712] text-[#E2E8F0] flex flex-col antialiased selection:bg-[#00F5D4]/30 selection:text-[#00F5D4]">
       
       {/* Navigation Top Bar */}
       <Navbar
@@ -291,12 +295,14 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#1E293B] bg-[#05080A] py-5 text-center text-xs text-[#64748B] font-mono">
+      <footer className="border-t border-[#14354D] bg-[#050F1A] py-5 text-center text-xs text-[#94A3B8] font-mono">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-white uppercase tracking-wider">National Blue Carbon Registry</span>
+            <span className="font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+              <span className="text-[#00F5D4]">POSEIDON</span> Blue Carbon Registry
+            </span>
             <span>•</span>
-            <span className="text-[#94A3B8]">Ministry of Environment, Forest and Climate Change (MoEFCC)</span>
+            <span className="text-[#00B4D8]">MoEFCC / NCCR-INDIA</span>
           </div>
           <div className="text-[#64748B] text-[10px] uppercase tracking-widest">
             IPCC Tier-3 Wetland Allometry • SHA-256 Cryptographic Ledger • 80/20 Buffer Reserve

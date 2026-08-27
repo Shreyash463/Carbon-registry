@@ -35,12 +35,12 @@ export const SitesView: React.FC<SitesViewProps> = ({
     <div className="space-y-6">
       
       {/* Top Controls Bar */}
-      <div className="bg-[#080D11] border border-[#1E293B] rounded-lg p-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#050F1A] border border-[#14354D] rounded-lg p-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         
         {/* State Filter Chips */}
         <div className="flex items-center gap-1.5 overflow-x-auto text-xs no-scrollbar">
-          <div className="flex items-center gap-1 text-[#64748B] font-mono uppercase text-[10px] tracking-widest mr-2 shrink-0">
-            <SlidersHorizontal className="w-3 h-3 text-[#00FF9C]" />
+          <div className="flex items-center gap-1 text-[#00F5D4] font-mono uppercase text-[10px] tracking-widest mr-2 shrink-0 font-bold">
+            <SlidersHorizontal className="w-3 h-3 text-[#00F5D4]" />
             <span>Region:</span>
           </div>
           {states.map(state => (
@@ -49,22 +49,22 @@ export const SitesView: React.FC<SitesViewProps> = ({
               onClick={() => setSelectedState(state)}
               className={`px-3 py-1.5 rounded text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
                 selectedState === state
-                  ? 'bg-[#00FF9C] text-[#05080A] font-bold shadow-[0_0_10px_rgba(0,255,156,0.3)]'
-                  : 'bg-[#0F171C] text-[#94A3B8] border border-[#1E293B] hover:text-white hover:border-[#00FF9C]/40'
+                  ? 'bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#10B981] text-[#030712] font-bold shadow-[0_0_12px_rgba(0,245,212,0.3)]'
+                  : 'bg-[#0B2236] text-[#94A3B8] border border-[#14354D] hover:text-white hover:border-[#00F5D4]/40'
               }`}
             >
-              {state === 'ALL' ? 'ALL REGIONS (IN)' : state}
+              {state === 'ALL' ? 'ALL REGIONS (IN)' : state === 'Maharashtra' ? '⭐ MAHARASHTRA' : state}
             </button>
           ))}
         </div>
 
         {/* View Mode Toggle */}
-        <div className="flex items-center gap-1 bg-[#05080A] p-1 rounded border border-[#1E293B] text-xs font-mono">
+        <div className="flex items-center gap-1 bg-[#030712] p-1 rounded border border-[#14354D] text-xs font-mono">
           <button
             onClick={() => setViewMode('MAP_AND_GRID')}
             className={`flex items-center gap-1.5 px-3 py-1 rounded transition-all cursor-pointer uppercase text-[11px] font-semibold ${
               viewMode === 'MAP_AND_GRID'
-                ? 'bg-[#161F27] text-[#00FF9C] border border-[#00FF9C]/40'
+                ? 'bg-[#0B2236] text-[#00F5D4] border border-[#00F5D4]/40 shadow-[0_0_8px_rgba(0,245,212,0.2)]'
                 : 'text-[#64748B] hover:text-white'
             }`}
           >
@@ -76,7 +76,7 @@ export const SitesView: React.FC<SitesViewProps> = ({
             onClick={() => setViewMode('GRID')}
             className={`flex items-center gap-1.5 px-3 py-1 rounded transition-all cursor-pointer uppercase text-[11px] font-semibold ${
               viewMode === 'GRID'
-                ? 'bg-[#161F27] text-[#00FF9C] border border-[#00FF9C]/40'
+                ? 'bg-[#0B2236] text-[#00F5D4] border border-[#00F5D4]/40 shadow-[0_0_8px_rgba(0,245,212,0.2)]'
                 : 'text-[#64748B] hover:text-white'
             }`}
           >
@@ -99,13 +99,13 @@ export const SitesView: React.FC<SitesViewProps> = ({
 
       {/* Site Cards Grid */}
       <div>
-        <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#1E293B]">
+        <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#14354D]">
           <h2 className="text-sm font-bold uppercase tracking-wider text-white flex items-center gap-2 font-mono">
-            <Layers className="w-4 h-4 text-[#00FF9C]" />
+            <Layers className="w-4 h-4 text-[#00F5D4]" />
             <span>Monitored Mangrove Wetland Fleet ({filteredSites.length} Sectors)</span>
           </h2>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#64748B]">
-            Automated Tri-Source Consensus
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#00B4D8] font-bold">
+            POSEIDON Tri-Source Consensus
           </span>
         </div>
 

@@ -58,21 +58,21 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             
             {/* Header / Seal */}
             <div className="flex flex-col items-center justify-center">
-              <div className="w-14 h-14 rounded bg-[#00FF9C]/15 border border-[#00FF9C]/40 flex items-center justify-center text-[#00FF9C] mb-2 shadow-[0_0_15px_rgba(0,255,156,0.3)]">
+              <div className="w-14 h-14 rounded bg-[#00F5D4]/15 border border-[#00F5D4]/40 flex items-center justify-center text-[#00F5D4] mb-2 shadow-[0_0_20px_rgba(0,245,212,0.35)]">
                 <Award className="w-8 h-8" />
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00FF9C]">
-                National Blue Carbon Registry of India
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#00FF9C] bg-clip-text text-transparent">
+                POSEIDON BLUE CARBON REGISTRY OF INDIA
               </span>
               <h2 className="text-xl font-bold text-white tracking-tight uppercase mt-1">
                 Certificate of Carbon Retirement
               </h2>
-              <div className="text-xs text-[#64748B] mt-1">
-                Certificate ID: <span className="text-[#00FF9C] font-bold">{credit.retiredDetails.certificateNumber}</span>
+              <div className="text-xs text-[#94A3B8] mt-1">
+                Certificate ID: <span className="text-[#00F5D4] font-bold">{credit.retiredDetails.certificateNumber}</span>
               </div>
             </div>
 
-            <div className="w-24 h-0.5 bg-[#00FF9C]/40 mx-auto my-2"></div>
+            <div className="w-24 h-0.5 bg-gradient-to-r from-[#00F5D4] via-[#00B4D8] to-[#10B981] mx-auto my-2"></div>
 
             {/* Main Statement */}
             <p className="text-xs text-[#94A3B8] max-w-lg mx-auto leading-relaxed">
