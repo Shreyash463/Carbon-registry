@@ -58,11 +58,11 @@ export class RegistryStore {
     };
     this.ledger.push(genesisBlock);
 
-    // 2. Seed initial verified batches for Sundarbans, Pichavaram, and Bhitarkanika
+    // 2. Seed initial verified batches for Thane Creek (Maharashtra), Sundarbans, and Pichavaram
     const seedBatches = [
-      { site: this.sites[0], totalTons: 18450, batchId: 'BATCH-2026-SUN-01', date: '2026-07-15T10:00:00Z' },
-      { site: this.sites[1], totalTons: 5200, batchId: 'BATCH-2026-PIC-01', date: '2026-06-28T11:30:00Z' },
-      { site: this.sites[2], totalTons: 11800, batchId: 'BATCH-2026-BHI-01', date: '2026-05-18T15:00:00Z' }
+      { site: this.sites.find(s => s.id === 'thane-creek-mh-01') || this.sites[0], totalTons: 14200, batchId: 'BATCH-2026-THA-01', date: '2026-08-10T10:00:00Z' },
+      { site: this.sites.find(s => s.id === 'sundarbans-01') || this.sites[4], totalTons: 18450, batchId: 'BATCH-2026-SUN-01', date: '2026-07-15T10:00:00Z' },
+      { site: this.sites.find(s => s.id === 'pichavaram-02') || this.sites[5], totalTons: 5200, batchId: 'BATCH-2026-PIC-01', date: '2026-06-28T11:30:00Z' }
     ];
 
     for (const item of seedBatches) {

@@ -16,10 +16,13 @@ export const SitesView: React.FC<SitesViewProps> = ({
   onDegradeSite
 }) => {
   const [selectedState, setSelectedState] = useState<string>('ALL');
-  const [selectedSiteId, setSelectedSiteId] = useState<string>(sites[0]?.id || 'sundarbans-01');
+  const [selectedSiteId, setSelectedSiteId] = useState<string>(sites[0]?.id || 'thane-creek-mh-01');
   const [viewMode, setViewMode] = useState<'GRID' | 'MAP_AND_GRID'>('MAP_AND_GRID');
 
-  const states = ['ALL', ...Array.from(new Set(sites.map(s => s.state)))];
+  // Order states so Maharashtra is always first prioritized
+  const rawStates = Array.from(new Set(sites.map(s => s.state)));
+  const sortedStates = rawStates.filter(s => s !== 'Maharashtra');
+  const states = ['ALL', ...(rawStates.includes('Maharashtra') ? ['Maharashtra'] : []), ...sortedStates];
 
   const filteredSites = sites.filter(site => {
     if (selectedState === 'ALL') return true;

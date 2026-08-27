@@ -11,6 +11,198 @@ import {
  */
 export const INITIAL_MANGROVE_SITES: MangroveSite[] = [
   {
+    id: 'thane-creek-mh-01',
+    name: 'Thane Creek Flamingo Sanctuary & Mangrove Basin',
+    state: 'Maharashtra',
+    region: 'Mumbai-Thane Estuarine Belt, Konkan Coast',
+    coordinates: { lat: 19.1238, lng: 72.9812 },
+    totalAreaHa: 1690,
+    dominantSpecies: ['Avicennia marina', 'Sonneratia apetala', 'Rhizophora mucronata', 'Acanthus ilicifolius'],
+    ecosystemType: 'Estuarine Complex',
+    baselineBiomassTonsHa: 148.0,
+    lastVerificationDate: '2026-08-10T10:00:00Z',
+    verificationStatus: 'VERIFIED',
+    healthScore: 95,
+    totalCreditsMinted: 14200,
+    activeBufferReserve: 2840,
+    telemetry: {
+      satellite: {
+        ndvi: 0.78,
+        evi: 0.60,
+        ndwi: 0.41,
+        sarBackscatterDb: -11.2,
+        canopyAreaHa: 1610,
+        cloudCoverPct: 2.5,
+        sensor: 'Sentinel-2B MSI & Sentinel-1 SAR',
+        timestamp: '2026-08-25T05:20:00Z'
+      },
+      drone: {
+        canopyHeightM: 12.4,
+        stemDensityHa: 2100,
+        crownClosurePct: 84.0,
+        hyperspectralChlA: 42.5,
+        surveyDate: '2026-08-25T08:00:00Z',
+        droneModel: 'DJI Matrice 350 RTK + Zenmuse L2 LiDAR'
+      },
+      groundSensors: {
+        socPercent30cm: 3.40,
+        socPercent100cm: 2.10,
+        soilBulkDensityGcm3: 0.88,
+        salinityPsu: 22.0,
+        redoxPotentialMv: -165,
+        waterTableCm: 8.5,
+        sedimentAccretionMmYr: 4.8,
+        co2FluxGcm2Day: 4.80,
+        activeNodeCount: 18,
+        meshStatus: 'ONLINE'
+      }
+    }
+  },
+  {
+    id: 'vikhroli-mahim-mh-02',
+    name: 'Vikhroli & Mahim Creek Mangrove Reserve',
+    state: 'Maharashtra',
+    region: 'Mumbai Urban Mangrove Shield',
+    coordinates: { lat: 19.0984, lng: 72.9298 },
+    totalAreaHa: 850,
+    dominantSpecies: ['Avicennia marina', 'Sonneratia alba', 'Aegiceras corniculatum'],
+    ecosystemType: 'Estuarine Complex',
+    baselineBiomassTonsHa: 132.0,
+    lastVerificationDate: '2026-07-22T09:15:00Z',
+    verificationStatus: 'PENDING_MRV',
+    healthScore: 92,
+    totalCreditsMinted: 6100,
+    activeBufferReserve: 1220,
+    telemetry: {
+      satellite: {
+        ndvi: 0.74,
+        evi: 0.56,
+        ndwi: 0.38,
+        sarBackscatterDb: -12.0,
+        canopyAreaHa: 810,
+        cloudCoverPct: 3.1,
+        sensor: 'Sentinel-2B MSI',
+        timestamp: '2026-08-24T06:00:00Z'
+      },
+      drone: {
+        canopyHeightM: 10.8,
+        stemDensityHa: 2200,
+        crownClosurePct: 81.0,
+        hyperspectralChlA: 38.0,
+        surveyDate: '2026-08-24T10:30:00Z',
+        droneModel: 'DJI Matrice 350 RTK'
+      },
+      groundSensors: {
+        socPercent30cm: 3.10,
+        socPercent100cm: 1.90,
+        soilBulkDensityGcm3: 0.90,
+        salinityPsu: 24.5,
+        redoxPotentialMv: -150,
+        waterTableCm: 6.8,
+        sedimentAccretionMmYr: 4.2,
+        co2FluxGcm2Day: 4.20,
+        activeNodeCount: 12,
+        meshStatus: 'ONLINE'
+      }
+    }
+  },
+  {
+    id: 'malvan-sindhudurg-mh-03',
+    name: 'Sindhudurg Malvan Estuary & Coral-Mangrove Creek',
+    state: 'Maharashtra',
+    region: 'South Konkan Marine Eco-Zone',
+    coordinates: { lat: 16.0592, lng: 73.4682 },
+    totalAreaHa: 1240,
+    dominantSpecies: ['Rhizophora mucronata', 'Bruguiera gymnorhiza', 'Ceriops tagal', 'Sonneratia caseolaris'],
+    ecosystemType: 'Deltaic Mangrove',
+    baselineBiomassTonsHa: 165.0,
+    lastVerificationDate: '2026-08-05T11:45:00Z',
+    verificationStatus: 'PENDING_MRV',
+    healthScore: 97,
+    totalCreditsMinted: 11200,
+    activeBufferReserve: 2240,
+    telemetry: {
+      satellite: {
+        ndvi: 0.82,
+        evi: 0.65,
+        ndwi: 0.45,
+        sarBackscatterDb: -10.4,
+        canopyAreaHa: 1210,
+        cloudCoverPct: 1.8,
+        sensor: 'Sentinel-2A MSI & Landsat-9',
+        timestamp: '2026-08-25T03:30:00Z'
+      },
+      drone: {
+        canopyHeightM: 14.8,
+        stemDensityHa: 1850,
+        crownClosurePct: 86.0,
+        hyperspectralChlA: 46.5,
+        surveyDate: '2026-08-25T07:15:00Z',
+        droneModel: 'DJI Matrice 350 RTK + Zenmuse L2 LiDAR'
+      },
+      groundSensors: {
+        socPercent30cm: 3.80,
+        socPercent100cm: 2.45,
+        soilBulkDensityGcm3: 0.80,
+        salinityPsu: 18.2,
+        redoxPotentialMv: -185,
+        waterTableCm: 10.2,
+        sedimentAccretionMmYr: 5.8,
+        co2FluxGcm2Day: 5.30,
+        activeNodeCount: 15,
+        meshStatus: 'ONLINE'
+      }
+    }
+  },
+  {
+    id: 'ratnagiri-bhatye-mh-04',
+    name: 'Ratnagiri Bhatye Estuary Mangroves',
+    state: 'Maharashtra',
+    region: 'Kajali River Estuary, Konkan Coast',
+    coordinates: { lat: 16.9806, lng: 73.3031 },
+    totalAreaHa: 980,
+    dominantSpecies: ['Sonneratia alba', 'Avicennia officinalis', 'Kandelia candel'],
+    ecosystemType: 'Estuarine Complex',
+    baselineBiomassTonsHa: 140.0,
+    lastVerificationDate: '2026-06-18T14:00:00Z',
+    verificationStatus: 'PENDING_MRV',
+    healthScore: 93,
+    totalCreditsMinted: 7400,
+    activeBufferReserve: 1480,
+    telemetry: {
+      satellite: {
+        ndvi: 0.76,
+        evi: 0.58,
+        ndwi: 0.40,
+        sarBackscatterDb: -11.5,
+        canopyAreaHa: 940,
+        cloudCoverPct: 2.9,
+        sensor: 'Sentinel-2B MSI',
+        timestamp: '2026-08-23T04:45:00Z'
+      },
+      drone: {
+        canopyHeightM: 11.6,
+        stemDensityHa: 2000,
+        crownClosurePct: 82.0,
+        hyperspectralChlA: 40.2,
+        surveyDate: '2026-08-23T09:00:00Z',
+        droneModel: 'Quantum-Systems Trinity F90+'
+      },
+      groundSensors: {
+        socPercent30cm: 3.25,
+        socPercent100cm: 2.00,
+        soilBulkDensityGcm3: 0.89,
+        salinityPsu: 23.0,
+        redoxPotentialMv: -160,
+        waterTableCm: 7.5,
+        sedimentAccretionMmYr: 4.5,
+        co2FluxGcm2Day: 4.50,
+        activeNodeCount: 11,
+        meshStatus: 'ONLINE'
+      }
+    }
+  },
+  {
     id: 'sundarbans-01',
     name: 'Sundarbans Delta Zone-A (Jharkhali)',
     state: 'West Bengal',
