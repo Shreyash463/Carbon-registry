@@ -18,7 +18,9 @@ import {
   ShieldCheck, 
   ExternalLink,
   Info,
-  Waves
+  Waves,
+  Map as MapIcon,
+  X
 } from 'lucide-react';
 import { setOptions, importLibrary } from '@googlemaps/js-api-loader';
 
@@ -38,7 +40,22 @@ interface UserGPSLocation {
   nearestSiteDistanceKm?: number;
 }
 
-// Custom dark tactical map styling
+// Relative SVG pin coordinates mapped across Maharashtra & Indian coastline
+const SITE_COORDINATES_MAP: Record<string, { x: number; y: number; isMH?: boolean }> = {
+  // Maharashtra Prioritized Sectors
+  'thane-creek-mh-01': { x: 38, y: 48, isMH: true }, // Mumbai / Thane Creek
+  'vikhroli-mahim-mh-02': { x: 36, y: 50, isMH: true }, // Vikhroli & Mahim Mumbai
+  'ratnagiri-bhatye-mh-04': { x: 39, y: 57, isMH: true }, // Ratnagiri Bhatye
+  'malvan-sindhudurg-mh-03': { x: 41, y: 63, isMH: true }, // Sindhudurg Malvan
+  // National Sectors
+  'kutch-06': { x: 26, y: 38 }, // Gujarat
+  'sundarbans-01': { x: 74, y: 42 }, // West Bengal
+  'bhitarkanika-03': { x: 71, y: 48 }, // Odisha
+  'coringa-04': { x: 64, y: 62 }, // Andhra Pradesh
+  'pichavaram-02': { x: 58, y: 77 }, // Tamil Nadu
+  'andaman-05': { x: 88, y: 72 } // Andaman & Nicobar
+};
+
 const DARK_MAP_STYLES: google.maps.MapTypeStyle[] = [
   { elementType: "geometry", stylers: [{ color: "#080D11" }] },
   { elementType: "labels.text.stroke", stylers: [{ color: "#05080A" }] },
@@ -47,11 +64,6 @@ const DARK_MAP_STYLES: google.maps.MapTypeStyle[] = [
     featureType: "administrative.locality",
     elementType: "labels.text.fill",
     stylers: [{ color: "#00FF9C" }]
-  },
-  {
-    featureType: "administrative.province",
-    elementType: "geometry.stroke",
-    stylers: [{ color: "#00FF9C" }, { weight: 1.5 }]
   },
   {
     featureType: "poi",
@@ -64,39 +76,19 @@ const DARK_MAP_STYLES: google.maps.MapTypeStyle[] = [
     stylers: [{ color: "#0C1F1A" }]
   },
   {
-    featureType: "poi.park",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#00FF9C" }]
-  },
-  {
     featureType: "road",
     elementType: "geometry",
     stylers: [{ color: "#161F27" }]
   },
   {
-    featureType: "road",
-    elementType: "geometry.stroke",
-    stylers: [{ color: "#1E293B" }]
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#64748B" }]
-  },
-  {
     featureType: "water",
     elementType: "geometry",
     stylers: [{ color: "#04090E" }]
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#00D1FF" }]
   }
 ];
 
 function calculateDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371; // Earth radius in km
+  const R = 6371;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
   const a = 
@@ -125,8 +117,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
   });
   const [inputKey, setInputKey] = useState<string>(apiKey);
   const [showKeyModal, setShowKeyModal] = useState<boolean>(false);
-  const [isMapLoaded, setIsMapLoaded] = useState<boolean>(false);
-  const [mapError, setMapError] = useState<string | null>(null);
+  const [isGoogleMapActive, setIsGoogleMapActive] = useState<boolean>(Boolean(apiKey));
   const [mapType, setMapType] = useState<'roadmap' | 'satellite' | 'hybrid'>('roadmap');
 
   // GPS State
@@ -134,14 +125,14 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
   const [isLocating, setIsLocating] = useState<boolean>(false);
   const [gpsError, setGpsError] = useState<string | null>(null);
 
-  // Active Region Focus: Default to Maharashtra Konkan Coast!
+  // Active Region Focus
   const [activeRegion, setActiveRegion] = useState<string>('MAHARASHTRA');
 
   const selectedSite = sites.find(s => s.id === selectedSiteId) || sites[0];
 
-  // 1. Initialize Google Maps with modern importLibrary
+  // 1. Initialize Google Maps if API key is provided and user switched to Google Maps mode
   useEffect(() => {
-    if (!apiKey || !mapContainerRef.current) return;
+    if (!apiKey || !isGoogleMapActive || !mapContainerRef.current) return;
 
     let isMounted = true;
 
@@ -158,8 +149,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
 
         if (!isMounted || !mapContainerRef.current) return;
 
-        // Center prioritizes Maharashtra Konkan Coast by default
-        const defaultCenter = { lat: 18.8500, lng: 73.1500 };
+        const defaultCenter = { lat: 18.8500, lng: 73.1500 }; // Maharashtra
 
         const map = new Map(mapContainerRef.current, {
           center: defaultCenter,
@@ -175,12 +165,9 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
         });
 
         mapInstanceRef.current = map;
-        setIsMapLoaded(true);
-        setMapError(null);
       } catch (err: any) {
-        console.warn('Google Maps API failed to load with provided key:', err);
-        setMapError(err.message || 'Failed to initialize Google Maps. Check API Key.');
-        setIsMapLoaded(false);
+        console.warn('Google Maps load error:', err);
+        setIsGoogleMapActive(false);
       }
     }
 
@@ -189,25 +176,12 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [apiKey]);
-
-  // Update map type
-  useEffect(() => {
-    if (mapInstanceRef.current) {
-      mapInstanceRef.current.setMapTypeId(mapType);
-      if (mapType === 'roadmap') {
-        mapInstanceRef.current.setOptions({ styles: DARK_MAP_STYLES });
-      } else {
-        mapInstanceRef.current.setOptions({ styles: null });
-      }
-    }
-  }, [mapType]);
+  }, [apiKey, isGoogleMapActive]);
 
   // 2. Render Google Map Markers
   useEffect(() => {
-    if (!isMapLoaded || !mapInstanceRef.current) return;
+    if (!isGoogleMapActive || !mapInstanceRef.current) return;
 
-    // Clear old markers
     markersRef.current.forEach(m => m.setMap(null));
     markersRef.current = [];
 
@@ -242,47 +216,20 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
         }
       });
 
-      // InfoWindow
-      const infoContent = document.createElement('div');
-      infoContent.className = 'font-mono text-xs p-2 text-slate-900 min-w-[220px]';
-      infoContent.innerHTML = `
-        <div style="font-weight: bold; color: #05080A; text-transform: uppercase; font-size: 11px;">
-          ${site.name}
-        </div>
-        <div style="font-size: 10px; color: #0284c7; font-weight: bold; margin-top: 2px;">
-          ${site.state} • ${site.totalAreaHa.toLocaleString()} Hectares
-        </div>
-        <div style="font-size: 10px; color: #475569; margin-top: 4px;">
-          NDVI: <strong>${site.telemetry.satellite.ndvi}</strong> | LiDAR: <strong>${site.telemetry.drone.canopyHeightM}m</strong>
-        </div>
-        <div style="font-size: 10px; color: #16a34a; font-weight: bold; margin-top: 4px;">
-          Active Buffer: ${site.activeBufferReserve.toLocaleString()} tCO₂e
-        </div>
-      `;
-
-      const infoWindow = new google.maps.InfoWindow({
-        content: infoContent
-      });
-
       marker.addListener('click', () => {
         onSelectSite(site);
-        infoWindow.open(mapInstanceRef.current, marker);
       });
 
       markersRef.current.push(marker);
     });
-  }, [isMapLoaded, sites, selectedSiteId, onSelectSite]);
+  }, [isGoogleMapActive, sites, selectedSiteId, onSelectSite]);
 
-  // 3. Pan to selected site on change
+  // 3. Pan to selected site
   useEffect(() => {
-    if (isMapLoaded && mapInstanceRef.current && selectedSite) {
+    if (isGoogleMapActive && mapInstanceRef.current && selectedSite) {
       mapInstanceRef.current.panTo(selectedSite.coordinates);
-      // If user zooms to specific site, set comfortable zoom
-      if (selectedSite.state === 'Maharashtra') {
-        mapInstanceRef.current.setZoom(10);
-      }
     }
-  }, [selectedSiteId, isMapLoaded]);
+  }, [selectedSiteId, isGoogleMapActive]);
 
   // 4. Live GPS Geolocation Trigger
   const handleAcquireGPS = () => {
@@ -300,7 +247,6 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
         const userLng = position.coords.longitude;
         const accuracy = Math.round(position.coords.accuracy);
 
-        // Find nearest mangrove site in registry
         let minDistance = Infinity;
         let closestSiteName = '';
 
@@ -324,65 +270,54 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
         setGpsLocation(gpsData);
         setIsLocating(false);
 
-        // If Google Map is loaded, place/update user GPS marker & pan
         if (mapInstanceRef.current) {
           mapInstanceRef.current.panTo({ lat: userLat, lng: userLng });
           mapInstanceRef.current.setZoom(11);
-
-          if (userGpsMarkerRef.current) {
-            userGpsMarkerRef.current.setPosition({ lat: userLat, lng: userLng });
-          } else {
-            userGpsMarkerRef.current = new google.maps.Marker({
-              position: { lat: userLat, lng: userLng },
-              map: mapInstanceRef.current,
-              title: 'Your Live GPS Location',
-              icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 12,
-                fillColor: '#00D1FF',
-                fillOpacity: 1,
-                strokeColor: '#FFFFFF',
-                strokeWeight: 3
-              }
-            });
-          }
         }
       },
       (error) => {
-        console.warn('Geolocation error:', error);
         setIsLocating(false);
         if (error.code === error.PERMISSION_DENIED) {
-          setGpsError('GPS permission was denied in browser. Please allow location access.');
+          setGpsError('Location permission was denied in your browser. Click the lock/tune icon on your browser address bar to allow location.');
         } else {
-          setGpsError('Unable to retrieve GPS fix: ' + error.message);
+          setGpsError('GPS fix unavailable: ' + error.message);
         }
       },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   };
 
-  // Region preset zoom buttons
   const handleSelectRegionPreset = (regionKey: string) => {
     setActiveRegion(regionKey);
-    if (!mapInstanceRef.current) return;
 
-    switch (regionKey) {
-      case 'MAHARASHTRA':
+    if (regionKey === 'MAHARASHTRA') {
+      const mhSite = sites.find(s => s.state === 'Maharashtra');
+      if (mhSite) onSelectSite(mhSite);
+    } else if (regionKey === 'THANE_MUMBAI') {
+      const tc = sites.find(s => s.id === 'thane-creek-mh-01');
+      if (tc) onSelectSite(tc);
+    } else if (regionKey === 'SINDHUDURG') {
+      const mal = sites.find(s => s.id === 'malvan-sindhudurg-mh-03');
+      if (mal) onSelectSite(mal);
+    } else if (regionKey === 'ALL_INDIA') {
+      const sun = sites.find(s => s.id === 'sundarbans-01');
+      if (sun) onSelectSite(sun);
+    }
+
+    if (mapInstanceRef.current) {
+      if (regionKey === 'MAHARASHTRA') {
         mapInstanceRef.current.panTo({ lat: 18.8500, lng: 73.1500 });
         mapInstanceRef.current.setZoom(8);
-        break;
-      case 'THANE_MUMBAI':
+      } else if (regionKey === 'THANE_MUMBAI') {
         mapInstanceRef.current.panTo({ lat: 19.1238, lng: 72.9812 });
         mapInstanceRef.current.setZoom(12);
-        break;
-      case 'SINDHUDURG':
+      } else if (regionKey === 'SINDHUDURG') {
         mapInstanceRef.current.panTo({ lat: 16.0592, lng: 73.4682 });
         mapInstanceRef.current.setZoom(11);
-        break;
-      case 'ALL_INDIA':
+      } else {
         mapInstanceRef.current.panTo({ lat: 20.5937, lng: 78.9629 });
         mapInstanceRef.current.setZoom(5);
-        break;
+      }
     }
   };
 
@@ -390,6 +325,7 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
     const clean = inputKey.trim();
     setApiKey(clean);
     localStorage.setItem('GOOGLE_MAPS_API_KEY', clean);
+    setIsGoogleMapActive(true);
     setShowKeyModal(false);
   };
 
@@ -399,12 +335,12 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
       {/* Top Header: Title, Controls, GPS Trigger */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4 pb-3 border-b border-[#1E293B]">
         <div>
-          <div className="flex items-center gap-2 text-xs text-[#00FF9C] uppercase tracking-[0.2em] mb-1">
-            <Radio className="w-4 h-4 animate-pulse" />
+          <div className="flex items-center gap-2 text-xs text-[#00FF9C] uppercase tracking-[0.2em] mb-1 font-bold">
+            <Radio className="w-4 h-4 text-[#00FF9C] animate-pulse" />
             <span>National Mangrove Spatial Radar • Maharashtra Priority Fleet</span>
           </div>
           <h2 className="text-base font-bold uppercase tracking-wider text-white flex items-center gap-2">
-            <span>Google Maps GPS Geodetic Monitoring Deck</span>
+            <span>Spatial Geodetic Monitoring & GPS Deck</span>
           </h2>
         </div>
 
@@ -421,42 +357,23 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
             <span>{isLocating ? 'FIXING GPS...' : 'LOCATE LIVE GPS'}</span>
           </button>
 
-          {/* Map Layer Switcher */}
-          <div className="flex items-center bg-[#05080A] rounded border border-[#1E293B] p-0.5 text-xs">
-            <button
-              onClick={() => setMapType('roadmap')}
-              className={`px-2.5 py-1 rounded uppercase tracking-wider transition-colors ${
-                mapType === 'roadmap' ? 'bg-[#161F27] text-[#00FF9C] font-bold' : 'text-[#64748B] hover:text-white'
-              }`}
-            >
-              Dark Map
-            </button>
-            <button
-              onClick={() => setMapType('satellite')}
-              className={`px-2.5 py-1 rounded uppercase tracking-wider transition-colors ${
-                mapType === 'satellite' ? 'bg-[#161F27] text-[#00D1FF] font-bold' : 'text-[#64748B] hover:text-white'
-              }`}
-            >
-              Satellite
-            </button>
-            <button
-              onClick={() => setMapType('hybrid')}
-              className={`px-2.5 py-1 rounded uppercase tracking-wider transition-colors ${
-                mapType === 'hybrid' ? 'bg-[#161F27] text-[#FF8A00] font-bold' : 'text-[#64748B] hover:text-white'
-              }`}
-            >
-              Hybrid
-            </button>
-          </div>
-
-          {/* API Key Modal Button */}
+          {/* Map Mode Switcher */}
           <button
-            onClick={() => setShowKeyModal(true)}
-            title="Configure Google Maps API Key"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs uppercase tracking-wider bg-[#0F171C] hover:bg-[#161F27] text-[#E0E7EB] border border-[#1E293B] transition-colors cursor-pointer"
+            onClick={() => {
+              if (!apiKey) {
+                setShowKeyModal(true);
+              } else {
+                setIsGoogleMapActive(!isGoogleMapActive);
+              }
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs uppercase tracking-wider transition-colors cursor-pointer border ${
+              isGoogleMapActive
+                ? 'bg-[#00FF9C]/15 text-[#00FF9C] border-[#00FF9C]/40 shadow-[0_0_10px_rgba(0,255,156,0.2)]'
+                : 'bg-[#0F171C] text-[#94A3B8] border-[#1E293B] hover:text-white hover:border-[#00FF9C]/40'
+            }`}
           >
-            <Key className="w-3.5 h-3.5 text-[#00FF9C]" />
-            <span>{apiKey ? 'API KEY CONFIGURED' : 'CONNECT MAPS API KEY'}</span>
+            <Satellite className="w-3.5 h-3.5" />
+            <span>{isGoogleMapActive ? 'GOOGLE SATELLITE: ON' : 'CONNECT GOOGLE MAPS'}</span>
           </button>
 
         </div>
@@ -510,56 +427,116 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
       )}
 
       {gpsError && (
-        <div className="mb-4 p-2.5 rounded bg-[#FF4444]/15 border border-[#FF4444] text-xs text-[#FF4444] flex items-center gap-2">
-          <AlertTriangle className="w-4 h-4 shrink-0" />
-          <span>{gpsError}</span>
+        <div className="mb-4 p-3 rounded bg-[#FF8A00]/15 border border-[#FF8A00] text-xs text-[#FF8A00] flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 shrink-0 text-[#FF8A00]" />
+            <span>{gpsError}</span>
+          </div>
+          <button 
+            onClick={() => setGpsError(null)}
+            className="text-xs uppercase font-bold text-[#FF8A00] hover:underline cursor-pointer"
+          >
+            [DISMISS]
+          </button>
         </div>
       )}
 
-      {/* Main Grid: Google Map Container + Selected Sector Telemetry */}
+      {/* Main Grid: Tactical Map Viewport + Selected Sector Telemetry */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        {/* Left: Google Map Viewport */}
-        <div className="lg:col-span-7 bg-[#05080A] border border-[#1E293B] rounded-lg overflow-hidden relative min-h-[380px] flex flex-col">
+        {/* Left: Spatial Radar & Map Viewport */}
+        <div className="lg:col-span-7 bg-[#05080A] border border-[#1E293B] rounded-lg overflow-hidden relative min-h-[380px] flex flex-col justify-between">
           
-          {/* Map canvas */}
-          <div 
-            ref={mapContainerRef} 
-            className="w-full h-[380px] bg-[#05080A]"
-          />
-
-          {/* Fallback & API Key Guidance Overlay if Map is not loaded */}
-          {(!apiKey || mapError) && (
-            <div className="absolute inset-0 bg-[#05080A]/95 p-6 flex flex-col items-center justify-center text-center z-20">
-              <div className="w-12 h-12 rounded bg-[#00FF9C]/15 border border-[#00FF9C]/40 flex items-center justify-center text-[#00FF9C] mb-3 shadow-[0_0_15px_rgba(0,255,156,0.3)]">
-                <Satellite className="w-6 h-6" />
-              </div>
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-1">
-                Google Maps Dynamic Satellite & GPS Deck
-              </h3>
-              <p className="text-xs text-[#94A3B8] max-w-md mb-4 font-sans leading-relaxed">
-                Connect your Google Maps API key to activate high-resolution Sentinel satellite overlays, live GPS device radar tracking, and real-time geocoding for Maharashtra coastal estuaries.
-              </p>
+          {isGoogleMapActive && apiKey ? (
+            <div 
+              ref={mapContainerRef} 
+              className="w-full h-[380px] bg-[#05080A]"
+            />
+          ) : (
+            <div className="relative w-full h-[380px] bg-[#05080A] p-4 flex items-center justify-center overflow-hidden">
               
-              <div className="flex items-center gap-2 w-full max-w-sm">
-                <input
-                  type="text"
-                  value={inputKey}
-                  onChange={(e) => setInputKey(e.target.value)}
-                  placeholder="Paste Google Maps API Key here..."
-                  className="w-full bg-[#080D11] border border-[#1E293B] rounded px-3 py-2 text-xs text-white placeholder-[#64748B] focus:outline-none focus:border-[#00FF9C]"
-                />
+              {/* Radar Grid Pattern */}
+              <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none"></div>
+
+              {/* Concentric Radar Sweeps */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+                <div className="w-64 h-64 rounded-full border border-[#00FF9C] animate-pulse"></div>
+                <div className="w-96 h-96 rounded-full border border-[#00D1FF] absolute"></div>
+              </div>
+
+              {/* India Coastal Silhouette Background */}
+              <div className="absolute inset-0 opacity-15 pointer-events-none flex items-center justify-center">
+                <svg viewBox="0 0 100 100" className="w-full h-full text-[#00FF9C] fill-current">
+                  <path d="M 30,20 L 45,15 L 60,18 L 70,28 L 76,40 L 73,48 L 65,60 L 58,75 L 53,88 L 48,78 L 40,65 L 32,50 L 22,44 L 25,35 Z" />
+                </svg>
+              </div>
+
+              {/* Interactive Mangrove Sector Pins */}
+              <div className="relative w-full h-80 max-w-lg mx-auto">
+                {sites.map((site) => {
+                  const coords = SITE_COORDINATES_MAP[site.id] || { x: 50, y: 50 };
+                  const isSelected = selectedSite?.id === site.id;
+                  const isMH = site.state === 'Maharashtra';
+                  const isDegraded = site.verificationStatus === 'DEGRADED_ALERT';
+                  const isPending = site.verificationStatus === 'PENDING_MRV';
+
+                  return (
+                    <button
+                      key={site.id}
+                      onClick={() => onSelectSite(site)}
+                      style={{ left: `${coords.x}%`, top: `${coords.y}%` }}
+                      className={`absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-transform duration-200 z-10 ${
+                        isSelected ? 'scale-125 z-20' : 'hover:scale-110'
+                      }`}
+                    >
+                      <div className="relative flex items-center justify-center">
+                        {/* Ripple ring */}
+                        <span className={`absolute -inset-2 rounded-full opacity-60 animate-ping ${
+                          isDegraded ? 'bg-[#FF4444]' : (isPending ? 'bg-[#00D1FF]' : 'bg-[#00FF9C]')
+                        }`}></span>
+                        
+                        {/* Pin Marker */}
+                        <div className={`px-2 py-1 rounded border flex items-center gap-1.5 transition-all text-[10px] font-bold shadow-lg ${
+                          isSelected
+                            ? 'bg-[#00FF9C] text-[#05080A] border-white shadow-[0_0_15px_#00FF9C]'
+                            : isMH
+                              ? 'bg-[#080D11] border-[#00FF9C] text-[#00FF9C]'
+                              : isDegraded
+                                ? 'bg-[#080D11] border-[#FF4444] text-[#FF4444]'
+                                : isPending
+                                  ? 'bg-[#080D11] border-[#00D1FF] text-[#00D1FF]'
+                                  : 'bg-[#080D11] border-[#1E293B] text-[#E0E7EB]'
+                        }`}>
+                          <MapPin className="w-3 h-3 fill-current" />
+                          <span>{site.name.split(' ')[0]}</span>
+                        </div>
+
+                        {/* Hover Tooltip */}
+                        <div className={`absolute top-full mt-1.5 whitespace-nowrap px-2.5 py-1 rounded text-[10px] uppercase tracking-wider border pointer-events-none transition-opacity z-30 ${
+                          isSelected 
+                            ? 'opacity-100 bg-[#0F171C] text-[#00FF9C] border-[#00FF9C] shadow-lg' 
+                            : 'opacity-0 group-hover:opacity-100 bg-[#080D11] text-[#E0E7EB] border-[#1E293B]'
+                        }`}>
+                          {isMH && <span className="text-[#00FF9C] font-bold mr-1">⭐ MH:</span>}
+                          {site.name} ({site.state}) • {site.totalAreaHa.toLocaleString()} Ha
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Bottom Quick Switch Prompt */}
+              <div className="absolute bottom-3 right-3 z-20">
                 <button
-                  onClick={handleSaveApiKey}
-                  className="px-4 py-2 rounded bg-[#00FF9C] hover:bg-[#00D1FF] text-[#05080A] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shrink-0"
+                  onClick={() => setShowKeyModal(true)}
+                  className="flex items-center gap-1 px-2.5 py-1 rounded bg-[#080D11]/90 border border-[#1E293B] hover:border-[#00FF9C] text-[10px] text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
                 >
-                  ACTIVATE
+                  <Key className="w-3 h-3 text-[#00FF9C]" />
+                  <span>Google Maps Key</span>
                 </button>
               </div>
 
-              <span className="text-[10px] text-[#64748B] mt-2">
-                Tip: Get a key at <a href="https://console.cloud.google.com/google/maps-apis" target="_blank" rel="noreferrer" className="text-[#00D1FF] underline">Google Cloud Console</a> or use your existing Google Maps Key.
-              </span>
             </div>
           )}
 
@@ -651,12 +628,12 @@ export const IndiaMapView: React.FC<IndiaMapViewProps> = ({
                 onClick={() => setShowKeyModal(false)}
                 className="text-[#64748B] hover:text-white"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 
             <p className="text-xs text-[#94A3B8] font-sans mb-4 leading-relaxed">
-              Enter your Google Maps Platform API key to enable live interactive vector maps, satellite imagery, and geodetic triangulation across Maharashtra and Indian coastal wetlands.
+              Enter your Google Maps Platform API key to enable live Google Satellite layers and real-time aerial street view across Maharashtra and Indian coastal wetlands.
             </p>
 
             <div className="space-y-4">
