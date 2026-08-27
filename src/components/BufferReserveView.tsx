@@ -66,8 +66,8 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
     <div className="space-y-6">
       
       {/* Top Value Proposition & Mechanism Card */}
-      <div className="bg-[#080D11] border border-[#1E293B] rounded-lg p-6">
-        <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FF8A00] uppercase tracking-[0.2em] mb-2">
+      <div className="bg-[#050F1A] border border-[#14354D] rounded-lg p-6">
+        <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#FBBF24] uppercase tracking-[0.2em] mb-2">
           <ShieldAlert className="w-4 h-4" />
           <span>Core Market Differentiator • Risk Buffer Reserve Safeguard</span>
         </div>
@@ -79,17 +79,17 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
         </p>
 
         {/* Live Safety Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-[#1E293B]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-[#14354D]">
           
-          <div className="p-4 bg-[#05080A] rounded border border-[#FF8A00]/40">
-            <span className="text-[10px] font-mono text-[#FF8A00] uppercase tracking-widest block">Ring-Fenced Buffer Pool</span>
-            <div className="text-2xl font-bold font-mono text-[#FF8A00] mt-1">
+          <div className="p-4 bg-[#030712] rounded border border-[#FBBF24]/40">
+            <span className="text-[10px] font-mono text-[#FBBF24] uppercase tracking-widest block">Ring-Fenced Buffer Pool</span>
+            <div className="text-2xl font-bold font-mono text-[#FBBF24] mt-1">
               {stats.totalBufferHeld.toLocaleString()} <span className="text-xs font-normal text-[#94A3B8]">tCO₂e</span>
             </div>
             <span className="text-[10px] font-mono text-[#64748B] mt-1 block">Buffer Ratio: {bufferRatio}%</span>
           </div>
 
-          <div className="p-4 bg-[#05080A] rounded border border-[#1E293B]">
+          <div className="p-4 bg-[#030712] rounded border border-[#14354D]">
             <span className="text-[10px] font-mono text-[#00FF9C] uppercase tracking-widest block">Active Tradeable Pool</span>
             <div className="text-2xl font-bold font-mono text-[#00FF9C] mt-1">
               {stats.totalTradeableActive.toLocaleString()} <span className="text-xs font-normal text-[#94A3B8]">tCO₂e</span>
@@ -97,15 +97,15 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
             <span className="text-[10px] font-mono text-[#64748B] mt-1 block">100% Insured & Collateralized</span>
           </div>
 
-          <div className="p-4 bg-[#05080A] rounded border border-[#1E293B]">
-            <span className="text-[10px] font-mono text-[#00D1FF] uppercase tracking-widest block">Total Reversals Absorbed</span>
-            <div className="text-2xl font-bold font-mono text-[#00D1FF] mt-1">
+          <div className="p-4 bg-[#030712] rounded border border-[#14354D]">
+            <span className="text-[10px] font-mono text-[#00B4D8] uppercase tracking-widest block">Total Reversals Absorbed</span>
+            <div className="text-2xl font-bold font-mono text-[#00B4D8] mt-1">
               {stats.totalReversalBurned.toLocaleString()} <span className="text-xs font-normal text-[#94A3B8]">units</span>
             </div>
             <span className="text-[10px] font-mono text-[#64748B] mt-1 block">Compensated by Buffer Burns</span>
           </div>
 
-          <div className="p-4 bg-[#05080A] rounded border border-[#00FF9C]/40">
+          <div className="p-4 bg-[#030712] rounded border border-[#00FF9C]/40">
             <span className="text-[10px] font-mono text-[#00FF9C] uppercase tracking-widest block">Registry Solvency Score</span>
             <div className="text-2xl font-bold font-mono text-white mt-1">
               100.0%
@@ -117,11 +117,11 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
       </div>
 
       {/* Interactive Reversal Trigger Sandbox */}
-      <div className="bg-[#080D11] border border-[#1E293B] rounded-lg p-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#1E293B]">
+      <div className="bg-[#050F1A] border border-[#14354D] rounded-lg p-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#14354D]">
           <div>
             <h3 className="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center gap-2">
-              <Wind className="w-4 h-4 text-[#FF4444]" />
+              <Wind className="w-4 h-4 text-[#F87171]" />
               <span>Live Reversal Trigger Simulator (Ecological Stress Simulation)</span>
             </h3>
             <p className="text-xs font-mono text-[#64748B] mt-0.5">
@@ -143,7 +143,7 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
               <select
                 value={selectedSiteId}
                 onChange={(e) => setSelectedSiteId(e.target.value)}
-                className="w-full bg-[#05080A] border border-[#1E293B] text-xs font-mono text-white rounded p-2.5 focus:outline-none focus:border-[#FF4444] cursor-pointer"
+                className="w-full bg-[#030712] border border-[#14354D] text-xs font-mono text-white rounded p-2.5 focus:outline-none focus:border-[#F87171] cursor-pointer"
               >
                 {sites.map(s => (
                   <option key={s.id} value={s.id}>
@@ -164,11 +164,11 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
                   onClick={() => setSeverity('SEVERE_CYCLONE')}
                   className={`p-3 rounded border text-left cursor-pointer transition-all font-mono ${
                     severity === 'SEVERE_CYCLONE'
-                      ? 'bg-[#FF4444]/15 border-[#FF4444] text-white shadow-[0_0_10px_rgba(255,68,68,0.2)]'
-                      : 'bg-[#05080A] border-[#1E293B] text-[#64748B] hover:border-[#FF4444]/40'
+                      ? 'bg-[#F87171]/15 border-[#F87171] text-white shadow-[0_0_10px_rgba(255,68,68,0.2)]'
+                      : 'bg-[#030712] border-[#14354D] text-[#64748B] hover:border-[#F87171]/40'
                   }`}
                 >
-                  <div className="font-bold text-xs text-[#FF4444] mb-1 flex items-center gap-1.5 uppercase">
+                  <div className="font-bold text-xs text-[#F87171] mb-1 flex items-center gap-1.5 uppercase">
                     <Wind className="w-3.5 h-3.5" />
                     <span>Cat-4 Cyclone</span>
                   </div>
@@ -182,11 +182,11 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
                   onClick={() => setSeverity('MODERATE_SURGE')}
                   className={`p-3 rounded border text-left cursor-pointer transition-all font-mono ${
                     severity === 'MODERATE_SURGE'
-                      ? 'bg-[#FF8A00]/15 border-[#FF8A00] text-white shadow-[0_0_10px_rgba(255,138,0,0.2)]'
-                      : 'bg-[#05080A] border-[#1E293B] text-[#64748B] hover:border-[#FF8A00]/40'
+                      ? 'bg-[#FBBF24]/15 border-[#FBBF24] text-white shadow-[0_0_10px_rgba(255,138,0,0.2)]'
+                      : 'bg-[#030712] border-[#14354D] text-[#64748B] hover:border-[#FBBF24]/40'
                   }`}
                 >
-                  <div className="font-bold text-xs text-[#FF8A00] mb-1 flex items-center gap-1.5 uppercase">
+                  <div className="font-bold text-xs text-[#FBBF24] mb-1 flex items-center gap-1.5 uppercase">
                     <TrendingDown className="w-3.5 h-3.5" />
                     <span>Tidal Surge Dieback</span>
                   </div>
@@ -201,7 +201,7 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
             <button
               onClick={handleSimulateReversal}
               disabled={isProcessingReversal}
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded text-xs font-mono font-bold uppercase tracking-wider bg-[#FF4444]/20 hover:bg-[#FF4444]/30 text-[#FF4444] border border-[#FF4444]/60 transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_15px_rgba(255,68,68,0.25)]"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded text-xs font-mono font-bold uppercase tracking-wider bg-[#F87171]/20 hover:bg-[#F87171]/30 text-[#F87171] border border-[#F87171]/60 transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_15px_rgba(255,68,68,0.25)]"
             >
               {isProcessingReversal ? (
                 <>
@@ -219,7 +219,7 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
           </div>
 
           {/* Visualization / Output Column */}
-          <div className="lg:col-span-6 bg-[#05080A] rounded border border-[#1E293B] p-5 flex flex-col justify-between font-mono">
+          <div className="lg:col-span-6 bg-[#030712] rounded border border-[#14354D] p-5 flex flex-col justify-between font-mono">
             <div>
               <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-widest block mb-3">
                 Real-Time Reversal Compensation Flow
@@ -227,13 +227,13 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
 
               {lastReversalOutcome ? (
                 <div className="space-y-3">
-                  <div className="p-3.5 rounded bg-[#FF4444]/15 border border-[#FF4444]/50 text-xs">
-                    <div className="flex items-center gap-2 text-[#FF4444] font-bold mb-1 uppercase tracking-wider">
+                  <div className="p-3.5 rounded bg-[#F87171]/15 border border-[#F87171]/50 text-xs">
+                    <div className="flex items-center gap-2 text-[#F87171] font-bold mb-1 uppercase tracking-wider">
                       <AlertTriangle className="w-4 h-4" />
                       <span>Ecological Disturbance Detected</span>
                     </div>
                     <p className="text-[#E0E7EB] text-[11px] leading-relaxed">
-                      {lastReversalOutcome.triggerEvent} at <strong>{lastReversalOutcome.siteName}</strong> caused an estimated biomass loss of <strong className="text-[#FF4444]">{lastReversalOutcome.lossTons.toLocaleString()} tCO₂e</strong>.
+                      {lastReversalOutcome.triggerEvent} at <strong>{lastReversalOutcome.siteName}</strong> caused an estimated biomass loss of <strong className="text-[#F87171]">{lastReversalOutcome.lossTons.toLocaleString()} tCO₂e</strong>.
                     </p>
                   </div>
 
@@ -243,25 +243,25 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
                       <span>Buffer Reserve Automatically Compensated</span>
                     </div>
                     <p className="text-[#E0E7EB] text-[11px] leading-relaxed">
-                      <strong className="text-[#00FF9C]">{lastReversalOutcome.burnedCredits.toLocaleString()} Buffer Reserve units</strong> were permanently burned on the blockchain ledger (Block Type: <span className="text-[#FF4444] font-bold">BUFFER_REVERSAL_BURN</span>).
+                      <strong className="text-[#00FF9C]">{lastReversalOutcome.burnedCredits.toLocaleString()} Buffer Reserve units</strong> were permanently burned on the blockchain ledger (Block Type: <span className="text-[#F87171] font-bold">BUFFER_REVERSAL_BURN</span>).
                     </p>
                   </div>
 
-                  <div className="p-3 bg-[#080D11] rounded border border-[#1E293B] text-[11px] text-[#94A3B8]">
+                  <div className="p-3 bg-[#050F1A] rounded border border-[#14354D] text-[11px] text-[#94A3B8]">
                     <span className="text-white font-bold uppercase">Solvency Result:</span> Commercial buyers holding tradeable carbon credits experienced <strong>0% devaluation</strong>. The loss was 100% absorbed by the ring-fenced reserve pool.
                   </div>
                 </div>
               ) : (
                 <div className="space-y-3 text-xs text-[#64748B]">
-                  <div className="p-3 bg-[#080D11] rounded border border-[#1E293B]">
+                  <div className="p-3 bg-[#050F1A] rounded border border-[#14354D]">
                     <span className="font-bold text-white uppercase text-[10px] block mb-1">1. Continuous MRV Monitoring</span>
                     Tri-source telemetry compares current NDVI, LiDAR canopy height, and soil flux against the previous verified baseline.
                   </div>
-                  <div className="p-3 bg-[#080D11] rounded border border-[#1E293B]">
+                  <div className="p-3 bg-[#050F1A] rounded border border-[#14354D]">
                     <span className="font-bold text-white uppercase text-[10px] block mb-1">2. Negative Biomass Delta Calculation</span>
                     If canopy loss exceeds the 5% natural fluctuation band, the carbon deficit is measured using India-FSI allometry.
                   </div>
-                  <div className="p-3 bg-[#080D11] rounded border border-[#1E293B]">
+                  <div className="p-3 bg-[#050F1A] rounded border border-[#14354D]">
                     <span className="font-bold text-white uppercase text-[10px] block mb-1">3. Automated On-Chain Burn</span>
                     Corresponding buffer tokens are burned immediately on the ledger, preserving market integrity without external bailouts.
                   </div>
@@ -269,7 +269,7 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
               )}
             </div>
 
-            <div className="pt-3 border-t border-[#1E293B] text-[10px] text-[#64748B] flex items-center justify-between uppercase tracking-widest">
+            <div className="pt-3 border-t border-[#14354D] text-[10px] text-[#64748B] flex items-center justify-between uppercase tracking-widest">
               <span>Smart Contract Execution</span>
               <span className="text-[#00FF9C] font-bold">Consensus-Guaranteed</span>
             </div>
@@ -280,14 +280,14 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
       </div>
 
       {/* Per-Site Buffer Reserve Allocation Table */}
-      <div className="bg-[#080D11] border border-[#1E293B] rounded-lg p-5">
+      <div className="bg-[#050F1A] border border-[#14354D] rounded-lg p-5">
         <h3 className="text-sm font-bold font-mono text-white mb-3 uppercase tracking-wider">
           Regional Mangrove Buffer Allocations
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse font-mono">
             <thead>
-              <tr className="border-b border-[#1E293B] bg-[#05080A] text-[#64748B] font-semibold uppercase text-[10px] tracking-widest">
+              <tr className="border-b border-[#14354D] bg-[#030712] text-[#64748B] font-semibold uppercase text-[10px] tracking-widest">
                 <th className="py-2.5 px-3">Ecosystem Zone</th>
                 <th className="py-2.5 px-3">State</th>
                 <th className="py-2.5 px-3">Monitored Area</th>
@@ -296,18 +296,18 @@ export const BufferReserveView: React.FC<BufferReserveViewProps> = ({
                 <th className="py-2.5 px-3">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1E293B]">
+            <tbody className="divide-y divide-[#14354D]">
               {sites.map(site => (
-                <tr key={site.id} className="hover:bg-[#0F171C]/60">
+                <tr key={site.id} className="hover:bg-[#0B2236]/60">
                   <td className="py-2.5 px-3 font-bold text-white">{site.name}</td>
                   <td className="py-2.5 px-3 text-[#94A3B8]">{site.state}</td>
                   <td className="py-2.5 px-3 text-[#E0E7EB]">{site.totalAreaHa.toLocaleString()} Ha</td>
-                  <td className="py-2.5 px-3 font-semibold text-[#00D1FF]">{site.totalCreditsMinted.toLocaleString()} tCO₂e</td>
-                  <td className="py-2.5 px-3 font-bold text-[#FF8A00]">{site.activeBufferReserve.toLocaleString()} tCO₂e</td>
+                  <td className="py-2.5 px-3 font-semibold text-[#00B4D8]">{site.totalCreditsMinted.toLocaleString()} tCO₂e</td>
+                  <td className="py-2.5 px-3 font-bold text-[#FBBF24]">{site.activeBufferReserve.toLocaleString()} tCO₂e</td>
                   <td className="py-2.5 px-3">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                       site.verificationStatus === 'DEGRADED_ALERT' 
-                        ? 'bg-[#FF4444]/20 text-[#FF4444] border border-[#FF4444]/60' 
+                        ? 'bg-[#F87171]/20 text-[#F87171] border border-[#F87171]/60' 
                         : 'bg-[#00FF9C]/15 text-[#00FF9C] border border-[#00FF9C]/40'
                     }`}>
                       {site.verificationStatus}

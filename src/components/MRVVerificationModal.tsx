@@ -138,11 +138,11 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#05080A]/85 backdrop-blur-md overflow-y-auto">
-      <div className="bg-[#080D11] border border-[#1E293B] rounded-lg w-full max-w-3xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.8)] my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#030712]/85 backdrop-blur-md overflow-y-auto">
+      <div className="bg-[#050F1A] border border-[#14354D] rounded-lg w-full max-w-3xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.8)] my-8">
         
         {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-[#1E293B] flex items-center justify-between bg-[#05080A]">
+        <div className="px-6 py-4 border-b border-[#14354D] flex items-center justify-between bg-[#030712]">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded bg-[#00FF9C]/15 border border-[#00FF9C]/40 flex items-center justify-center text-[#00FF9C]">
               <Sparkles className="w-4 h-4" />
@@ -158,7 +158,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded text-[#64748B] hover:text-white hover:bg-[#161F27] transition-colors cursor-pointer"
+            className="p-1.5 rounded text-[#64748B] hover:text-white hover:bg-[#0B2236] transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -172,8 +172,8 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
             <>
               {/* Telemetry Snapshot */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="p-3 rounded bg-[#05080A] border border-[#1E293B] text-xs font-mono">
-                  <div className="flex items-center gap-1.5 text-[#00D1FF] font-bold mb-1 uppercase text-[10px]">
+                <div className="p-3 rounded bg-[#030712] border border-[#14354D] text-xs font-mono">
+                  <div className="flex items-center gap-1.5 text-[#00B4D8] font-bold mb-1 uppercase text-[10px]">
                     <Satellite className="w-3.5 h-3.5" />
                     <span>Sentinel-2</span>
                   </div>
@@ -181,7 +181,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
                   <div className="text-[#64748B] text-[10px] mt-0.5">Canopy: {site.telemetry.satellite.canopyAreaHa} Ha</div>
                 </div>
 
-                <div className="p-3 rounded bg-[#05080A] border border-[#1E293B] text-xs font-mono">
+                <div className="p-3 rounded bg-[#030712] border border-[#14354D] text-xs font-mono">
                   <div className="flex items-center gap-1.5 text-[#00FF9C] font-bold mb-1 uppercase text-[10px]">
                     <Plane className="w-3.5 h-3.5" />
                     <span>RTK-LiDAR</span>
@@ -190,8 +190,8 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
                   <div className="text-[#64748B] text-[10px] mt-0.5">Crown: {site.telemetry.drone.crownClosurePct}%</div>
                 </div>
 
-                <div className="p-3 rounded bg-[#05080A] border border-[#1E293B] text-xs font-mono">
-                  <div className="flex items-center gap-1.5 text-[#FF8A00] font-bold mb-1 uppercase text-[10px]">
+                <div className="p-3 rounded bg-[#030712] border border-[#14354D] text-xs font-mono">
+                  <div className="flex items-center gap-1.5 text-[#FBBF24] font-bold mb-1 uppercase text-[10px]">
                     <Radio className="w-3.5 h-3.5" />
                     <span>IoT Mesh</span>
                   </div>
@@ -201,15 +201,15 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
               </div>
 
               {/* Buffer Reserve Configurator */}
-              <div className="p-4 rounded bg-[#05080A] border border-[#00FF9C]/30 font-mono">
+              <div className="p-4 rounded bg-[#030712] border border-[#00FF9C]/30 font-mono">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <ShieldAlert className="w-4 h-4 text-[#FF8A00]" />
+                    <ShieldAlert className="w-4 h-4 text-[#FBBF24]" />
                     <span className="text-xs font-bold text-white uppercase tracking-wider">
                       Buffer Reserve Allocation Ratio
                     </span>
                   </div>
-                  <span className="text-xs font-bold text-[#FF8A00] px-2 py-0.5 rounded bg-[#FF8A00]/15 border border-[#FF8A00]/40">
+                  <span className="text-xs font-bold text-[#FBBF24] px-2 py-0.5 rounded bg-[#FBBF24]/15 border border-[#FBBF24]/40">
                     {bufferRatioPct}% RESERVE / {100 - bufferRatioPct}% TRADEABLE
                   </span>
                 </div>
@@ -247,19 +247,19 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
                           key={idx}
                           className={`p-3 rounded border text-xs flex items-center justify-between transition-colors ${
                             isCurrent
-                              ? 'bg-[#161F27] border-[#00FF9C] text-white shadow-[0_0_10px_rgba(0,255,156,0.2)]'
+                              ? 'bg-[#0B2236] border-[#00FF9C] text-white shadow-[0_0_10px_rgba(0,255,156,0.2)]'
                               : isPast
-                                ? 'bg-[#05080A] border-[#00FF9C]/40 text-[#E0E7EB]'
-                                : 'bg-[#05080A] border-[#1E293B] text-[#64748B]'
+                                ? 'bg-[#030712] border-[#00FF9C]/40 text-[#E0E7EB]'
+                                : 'bg-[#030712] border-[#14354D] text-[#64748B]'
                           }`}
                         >
                           <div className="flex items-center gap-3">
                             <div className={`w-6 h-6 rounded flex items-center justify-center text-[11px] font-bold ${
                               isPast 
-                                ? 'bg-[#00FF9C] text-[#05080A]' 
+                                ? 'bg-[#00FF9C] text-[#030712]' 
                                 : isCurrent 
                                   ? 'bg-[#00FF9C]/20 text-[#00FF9C] border border-[#00FF9C]' 
-                                  : 'bg-[#1E293B] text-[#64748B]'
+                                  : 'bg-[#14354D] text-[#64748B]'
                             }`}>
                               {isPast ? <CheckCircle2 className="w-3.5 h-3.5" /> : stepNum}
                             </div>
@@ -279,8 +279,8 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
               )}
 
               {errorMsg && (
-                <div className="p-3 rounded bg-[#FF4444]/15 border border-[#FF4444] text-xs font-mono text-[#FF4444] flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-[#FF4444] shrink-0" />
+                <div className="p-3 rounded bg-[#F87171]/15 border border-[#F87171] text-xs font-mono text-[#F87171] flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-[#F87171] shrink-0" />
                   <span>{errorMsg}</span>
                 </div>
               )}
@@ -291,7 +291,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
               
               {/* Success Banner */}
               <div className="p-4 rounded bg-[#00FF9C]/10 border border-[#00FF9C]/40 flex items-start gap-3">
-                <div className="w-8 h-8 rounded bg-[#00FF9C] text-[#05080A] flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded bg-[#00FF9C] text-[#030712] flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div>
@@ -306,7 +306,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
 
               {/* Tonnage & Split Summary */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="p-3.5 rounded bg-[#05080A] border border-[#1E293B]">
+                <div className="p-3.5 rounded bg-[#030712] border border-[#14354D]">
                   <span className="text-[10px] text-[#64748B] block uppercase tracking-widest">Reconciled Biomass</span>
                   <div className="text-xl font-bold text-white mt-1">
                     {verificationData.consensus.reconciledAnnualSequestrationTCO2e.toLocaleString()} <span className="text-xs font-normal text-[#64748B]">tCO₂e</span>
@@ -314,7 +314,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
                   <span className="text-[10px] text-[#00FF9C] uppercase">IPCC Tier-3 Net Certified</span>
                 </div>
 
-                <div className="p-3.5 rounded bg-[#05080A] border border-[#00FF9C]/40">
+                <div className="p-3.5 rounded bg-[#030712] border border-[#00FF9C]/40">
                   <span className="text-[10px] text-[#00FF9C] block uppercase tracking-widest">Tradeable Credits (80%)</span>
                   <div className="text-xl font-bold text-[#00FF9C] mt-1">
                     {verificationData.consensus.tradeableCredits.toLocaleString()} <span className="text-xs font-normal text-[#64748B]">units</span>
@@ -322,9 +322,9 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
                   <span className="text-[10px] text-[#94A3B8]">Active for Market Sale</span>
                 </div>
 
-                <div className="p-3.5 rounded bg-[#05080A] border border-[#FF8A00]/40">
-                  <span className="text-[10px] text-[#FF8A00] block uppercase tracking-widest">Buffer Held (20%)</span>
-                  <div className="text-xl font-bold text-[#FF8A00] mt-1">
+                <div className="p-3.5 rounded bg-[#030712] border border-[#FBBF24]/40">
+                  <span className="text-[10px] text-[#FBBF24] block uppercase tracking-widest">Buffer Held (20%)</span>
+                  <div className="text-xl font-bold text-[#FBBF24] mt-1">
                     {verificationData.consensus.bufferReserveCredits.toLocaleString()} <span className="text-xs font-normal text-[#64748B]">units</span>
                   </div>
                   <span className="text-[10px] text-[#94A3B8]">Ring-Fenced Solvency Reserve</span>
@@ -332,7 +332,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
               </div>
 
               {/* Plain-language AI / Auditor Summary */}
-              <div className="p-4 rounded bg-[#05080A] border border-[#1E293B]">
+              <div className="p-4 rounded bg-[#030712] border border-[#14354D]">
                 <div className="flex items-center justify-between gap-2 mb-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
                     <Bot className="w-4 h-4 text-[#00FF9C]" />
@@ -348,7 +348,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
               </div>
 
               {/* Cryptographic Proof Card */}
-              <div className="p-3 rounded bg-[#05080A] border border-[#1E293B] text-xs font-mono">
+              <div className="p-3 rounded bg-[#030712] border border-[#14354D] text-xs font-mono">
                 <div className="flex items-center justify-between text-[#64748B] mb-1.5 uppercase text-[10px]">
                   <span>Blockchain Mint Block #{verificationData.mintBlock.index}</span>
                   <span className="text-[#00FF9C]">SHA-256 Validated</span>
@@ -370,10 +370,10 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-[#1E293B] flex items-center justify-between bg-[#05080A] font-mono">
+        <div className="px-6 py-4 border-t border-[#14354D] flex items-center justify-between bg-[#030712] font-mono">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded text-xs uppercase tracking-wider text-[#64748B] hover:text-white hover:bg-[#161F27] transition-colors cursor-pointer border border-[#1E293B]"
+            className="px-4 py-2 rounded text-xs uppercase tracking-wider text-[#64748B] hover:text-white hover:bg-[#0B2236] transition-colors cursor-pointer border border-[#14354D]"
           >
             {verificationData ? 'CLOSE' : 'CANCEL'}
           </button>
@@ -382,7 +382,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
             <button
               onClick={handleStartVerification}
               disabled={isRunning}
-              className="flex items-center gap-2 px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00FF9C] hover:bg-[#00D1FF] text-[#05080A] transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_15px_rgba(0,255,156,0.3)]"
+              className="flex items-center gap-2 px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00FF9C] hover:bg-[#00B4D8] text-[#030712] transition-all cursor-pointer disabled:opacity-50 shadow-[0_0_15px_rgba(0,255,156,0.3)]"
             >
               {isRunning ? (
                 <>
@@ -399,7 +399,7 @@ export const MRVVerificationModal: React.FC<MRVVerificationModalProps> = ({
           ) : (
             <button
               onClick={onClose}
-              className="flex items-center gap-2 px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00FF9C] hover:bg-[#00D1FF] text-[#05080A] transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,156,0.3)]"
+              className="flex items-center gap-2 px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-[#00FF9C] hover:bg-[#00B4D8] text-[#030712] transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,156,0.3)]"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>CONFIRM & UPDATE REGISTRY</span>
